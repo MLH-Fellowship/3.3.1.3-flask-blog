@@ -3,7 +3,7 @@ from post import Post
 
 class PostDatabaseHelper:
     def __init__(self):
-        self.DB =mysql.connector.connect(
+        self.DB = mysql.connector.connect(
                     host="localhost",
                     user="root",
                     password="password",
@@ -44,7 +44,24 @@ class PostDatabaseHelper:
     def getAllPosts(self):
         self.cursor.execute("SELECT * from Post")
         posts = []
+        index = 0
         for p in self.cursor:
             postID, postTitle, postBody, postCategory, postDate = p
-            posts.append(Post(postID, postTitle, postBody, postCategory, postDate))
+            posts.append(Post(index,postID, postTitle, postBody, postCategory, postDate))
+            index += 1
         return posts
+
+    def filterPost(self, category):
+        query = ("SELECT * FROM post WHERE postCategory = " + category)
+        self.cursor.execute(query)
+        filterResults = []
+        index = 0
+        for p in self.cursor:
+            postID, postTitle, postBody, postCategory, postDate = p
+            filterResults.append(Post(index,postID, postTitle, postBody, postCategory, postDate))
+            index += 1
+        return filterResults
+
+
+for post in PostDatabaseHelper().filterPost("2"):
+    print(post.postTitle)
