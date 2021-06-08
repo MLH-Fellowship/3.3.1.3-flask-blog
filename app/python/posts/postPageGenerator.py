@@ -2,7 +2,6 @@ from post import Post
 from HTMLPostFactory import HTMLPostFactory
 from postDatabaseHelper import PostDatabaseHelper
 
-#postID, postTitle, postCategory, postContent, postDat
 class PostPageGenerator:
     def __init__(self):
         self.DB = PostDatabaseHelper()
@@ -12,11 +11,10 @@ class PostPageGenerator:
 
     #def updatePost
 
+    #category is the code
+    
     def filterPosts(self, category):
-        filterResult = []
-        for index in range(len(self.posts)):
-            if self.posts[index].postCategory == category:
-                filterResult.append(self.postsHTML[i])
+        filterResult = self.DB.filterPost(category)
         return self.__HTMLArrayToString(filterResult)
 
     def deletePost(self,postIndex):
