@@ -108,7 +108,7 @@ class PostDatabaseHelper:
         self.DB.commit()
 
     def deleteComment(self, comment):
-        postToDelete = str(post.postID)
-        query = "DELETE FROM post WHERE postID = " + postToDelete
+        commentToDelete = str(comment.commentID)
+        query = "DELETE FROM post WHERE postID = " + commentToDelete
         self.cursor.execute(query)
         self.DB.commit()
