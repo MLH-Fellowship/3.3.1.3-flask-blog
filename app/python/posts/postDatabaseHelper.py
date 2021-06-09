@@ -23,7 +23,7 @@ class PostDatabaseHelper:
         query += '("' + title + '","' + body + '","' + category + '","' + date +'");'
         self.cursor.execute(query)
         self.DB.commit()
-        #self.__insertNewPostLikes(post)
+        self.__insertNewPostLikes(post)
     
     def deletePost(self, post):
         postToDelete = str(post.postID)
