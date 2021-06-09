@@ -1,5 +1,7 @@
 import mysql.connector
 from post import Post
+from comment import Comment
+from string import Template
 
 class PostDatabaseHelper:
     def __init__(self):
@@ -21,6 +23,7 @@ class PostDatabaseHelper:
         query += '("' + title + '","' + body + '","' + category + '","' + date +'");'
         self.cursor.execute(query)
         self.DB.commit()
+        #self.__insertNewPostLikes(post)
     
     def deletePost(self, post):
         postToDelete = str(post.postID)
@@ -74,3 +77,38 @@ class PostDatabaseHelper:
             filterResults.append(Post(index,postID, postTitle, postBody, postCategory, postDate))
             index += 1
         return filterResults
+
+    def __insertNewPostLike(self, post):
+        title = post.postTitle
+        body = post.postBody
+        category = post.postCategory
+        date = post.postDate
+        query = Template(
+            """
+            INSERT INTO likes( postID, likeCount) VALUES
+            ((SELECT postID FROM post WHERE postTitle = "$title" and postBody = "$body" and  postCategory = "$category"and postDate = "$date"),
+            0)
+            """)
+        query = query.substitute({"title": title, "body": body, "category": category, "date": date})
+        self.cursor.execute(query)
+        self.DB.commit()
+
+    def insertComment(self, post, comment):
+        postID = post.postID
+        commentBody = comment.commentBody
+        commentDate = comment.commentDate
+        commentAuthor = comment.commentAuthor
+        query = Template(\
+        """
+        INSERT INTO comments(postID , commentBody, commentDate, commentAuthor) VALUES
+        ($postID, "$commentBody", "$commentDate", "$commentAuthor")
+        """)
+        query = query.substitute({"postID": postID, "commentBody": commentBody, "commentDate": commentDate, "commentAuthor": commentAuthor})
+        self.cursor.execute(query)
+        self.DB.commit()
+
+    def deleteComment(self, comment):
+        postToDelete = str(post.postID)
+        query = "DELETE FROM post WHERE postID = " + postToDelete
+        self.cursor.execute(query)
+        self.DB.commit()

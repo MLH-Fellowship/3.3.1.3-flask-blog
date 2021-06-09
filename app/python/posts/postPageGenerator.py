@@ -11,7 +11,7 @@ class PostPageGenerator:
         self.postsHTML = self.__getHTMLPosts()
         print(self.postsHTML)
 
-        
+    
 
     def filterPosts(self, category):
         filterResult = []

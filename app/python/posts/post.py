@@ -1,5 +1,5 @@
 class Post:
-    def __init__(self, arrayIndex, postID, postTitle, postBody, postCategory, postDate, postLikeCount, postCommentCount):
+    def __init__(self, arrayIndex, postID , postTitle, postBody, postCategory, postDate, postLikeCount = 0, postCommentCount = 0):
         self.arrayIndex = arrayIndex
         self.postID = postID
         self.postTitle = postTitle
