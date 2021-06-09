@@ -1,20 +1,23 @@
 from post import Post
-from HTMLPostFactory import HTMLPostFactory
+from HTMLFactory import HTMLFactory
 from postDatabaseHelper import PostDatabaseHelper
 
+#postID, postTitle, postCategory, postContent, postDat
 class PostPageGenerator:
     def __init__(self):
         self.DB = PostDatabaseHelper()
-        self.Factory = HTMLPostFactory()
+        self.Factory = HTMLFactory()
         self.posts = self.DB.getAllPosts()
         self.postsHTML = self.__getHTMLPosts()
+        print(self.postsHTML)
 
-    #def updatePost
-
-    #category is the code
     
+
     def filterPosts(self, category):
-        filterResult = self.DB.filterPost(category)
+        filterResult = []
+        for index in range(len(self.posts)):
+            if self.posts[index].postCategory == category:
+                filterResult.append(self.postsHTML[i])
         return self.__HTMLArrayToString(filterResult)
 
     def deletePost(self,postIndex):
@@ -40,6 +43,3 @@ class PostPageGenerator:
         for element in self.postsHTML:
             htmlText += element
         return htmlText
-
-for post in PostDatabaseHelper().getAllPosts():
-    print(post.postTitle)
