@@ -9,7 +9,7 @@ class PostDatabaseHelper:
                     password="password",
                     database = "mlh"
                 )
-        self.cursor = self.DB.cursor()
+        self.cursor = self.DB.cursor( buffered = True)
 
     
     def insertPost(self, post):
@@ -43,11 +43,24 @@ class PostDatabaseHelper:
 
     def getAllPosts(self):
         self.cursor.execute("SELECT * from Post")
+        postQuery = [x for x in self.cursor]
         posts = []
         index = 0
-        for p in self.cursor:
-            postID, postTitle, postBody, postCategory, postDate = p
-            posts.append(Post(index,postID, postTitle, postBody, postCategory, postDate))
+        for post in postQuery:
+
+            postID, postTitle, postBody, postCategory, postDate = post
+            likeCount = 0
+            commentCount = 0
+            self.cursor.execute("SELECT likeCount from Likes WHERE postID = " + str(postID) )
+            likeQuery = [x for x in self.cursor]
+            likeCount = 0 if len(likeQuery) == 0 else likeQuery[0][0]
+
+            self.cursor.execute("select COUNT(postID) from comments WHERE postID  = " + str(postID))
+            commentQuery = [x for x in self.cursor]
+            commentCount = 0 if len(commentQuery) == 0 else commentQuery[0][0]
+
+            posts.append(Post(index,postID, postTitle, postBody, postCategory, postDate,likeCount,commentCount))
+            
             index += 1
         return posts
 
@@ -61,7 +74,3 @@ class PostDatabaseHelper:
             filterResults.append(Post(index,postID, postTitle, postBody, postCategory, postDate))
             index += 1
         return filterResults
-
-
-for post in PostDatabaseHelper().filterPost("2"):
-    print(post.postTitle)
