@@ -15,7 +15,7 @@
 </head>
 
 <body class = "container fluid" id = "blogEntryContainer">
-
+    
     <!-- FIRST COLUMN-->
     <div class = "row">
         <div class = "col-3" id = "postCategoryCol" align = "left">
@@ -63,7 +63,7 @@
         </div>
 
         <div class = "col-2" align = "center" id = "nextPostCol">
-            <img class = "img-fluid" src = "../static/img/buttonImage.png" id = "nextPostImage"/>
+            <img class = "img-fluid" src = "../static/img/buttonImage.png" onclick = "window.location.href='{{ url_for( 'loadNextPost') }}';" id = "nextPostImage"/>
             <img class = "img-fluid" src = "../static/img/blogContentBackground.png" id = "nextPostImageTextImage"/>
             <div id = "nextPostText">
                     Next Post
@@ -145,7 +145,7 @@
                 <div class = "col-12" id = "likesImageTextCol">
                     <img class = "img-fluid" src = "../static/img/blogContentBackground.png" id = "likesImage"/>
                     <div id = "likesImageText">
-                        Amount of likes: {{Like Count}}
+                        Amount of likes: {{LikeCount}}
                         <br><br>
                         Click the heart to like the post!
                     </div>
@@ -176,7 +176,7 @@
             </div>
         </div>
     </div>
-
+    
 </div>
     
 </body>
