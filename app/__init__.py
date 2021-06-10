@@ -28,7 +28,7 @@ def blog():
     commentDate = comment.commentDate
     commentBody = comment.commentBody
     LikeCount = post.postLikeCount
-    currentComment = commentIndex
+    currentComment = commentIndex + 1
     totalComments = len(postGenerator.postComments)
 
     title = post.postTitle
