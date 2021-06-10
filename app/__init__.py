@@ -9,7 +9,7 @@ app = Flask(__name__)
 postGenerator = PostPageGenerator()
 @app.route('/')
 def index():
-    return render_template('index.html', title="MLH Fellow", url=os.getenv("URL"))
+    return render_template('index.html', title="Pixel Pals", url=os.getenv("URL"))
 
 @app.route('/blog')
 def blog():
@@ -26,3 +26,7 @@ def loadNextPost():
     postIndex = postIndex + 1 if postIndex  + 1 < len(postGenerator.posts) else 0
     postGenerator.postIndex = postIndex
     return blog()
+
+@app.route("/character")
+def character():
+    return render_template('character.html', title="About Us", url=os.getenv("URL"))
