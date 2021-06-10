@@ -15,10 +15,30 @@
 </head>
 
 <body>
-    <h1 class="welcome" id="firstLine">A long time ago...</h1>
-    <h1 class="welcome" id="secondLine">In a land long forgotten...</h1>
-    <h1 class="welcome" id="thirdLine">Lived the Pixel Posse!</h1>
-
-    <header class="nav-bar"></header>
+    <div class="welcomeWall intro"></div>
+    <aside class="welcome intro" id="firstLine">A long time ago...</aside>
+    <aside class="welcome intro" id="secondLine">In a land long forgotten...</aside>
+    <aside class="welcome intro" id="thirdLine">Lived the Pixel Posse!</aside>
+    <header></header>
+    <nav class="menuFlex">
+        <a href="#" class="door">
+            <p class="sign">Blog</p>
+            <img src="/static/img/door.png"
+            onmouseover="this.src='/static/img/doorlit.png'"
+            onmouseout="this.src='/static/img/door.png'">
+        </a>
+        <a href="#" class="door">
+            <p class="sign">Gallery</p>
+            <img src="/static/img/door.png"
+            onmouseover="this.src='/static/img/doorlit.png'"
+            onmouseout="this.src='/static/img/door.png'">
+        </a>
+        <a href="#" class="door">
+            <p class="sign">Profile</p>
+            <img src="/static/img/door.png"
+            onmouseover="this.src='/static/img/doorlit.png'"
+            onmouseout="this.src='/static/img/door.png'">
+        </a>
+    </nav>
 </body>
 </html>
