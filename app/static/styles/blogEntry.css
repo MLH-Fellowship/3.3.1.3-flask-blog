@@ -1,0 +1,324 @@
+#blogEntryContainer{
+    background-image: url("../img/blogBackground.jpg");
+}
+
+
+/* first row */
+
+#postBodyCol, #postCategoryCol, #postDateCol, #postTitleCol{
+    margin-left: -5%;
+    position: relative;
+    text-align: center;
+
+}
+
+
+#postCategoryText, #postDateText{
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#postBodyText, #postTitleText{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#postBodyText{
+    height: 13vh;
+    max-height: 50%;
+    width: 80%;
+    overflow: auto;
+}
+
+#postBodyCol{
+    margin: auto;
+    width: 50%;
+}
+
+#postCategoryCol{
+    margin-right: 10%;
+}
+
+#postDateCol{
+    left: 10%;
+}
+
+
+#postTitleCol{
+    left: 0%;
+}
+
+#postBodyImage{
+    width: 100%;
+
+}
+
+/* second row */
+
+#prevPostCol, #nextPostCol{
+    margin-left: -10%;
+    margin-top: 6%;
+}
+
+#prevPostImage{
+
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    margin-left: 80%;
+
+}
+
+#nextPostImage{
+    margin-left: 0%;
+
+}
+
+#prevPostImage, #nextPostImage{
+    position: relative;
+}
+
+
+#prevPostImage:hover, #nextPostImage:hover{
+    opacity: 70%;
+    transition: 100ms;
+}
+
+
+#nextPostImageTextImage, #prevPostImageTextImage{
+    position: relative;
+    width: 20vw;
+}
+
+#prevPostImageTextImage{
+    left: 66%;
+    margin-top: -10%;
+}
+
+#nextPostImageTextImage{
+    left: 5%;
+    margin-top: -10%;
+}
+
+
+#prevPostText, #nextPostText{
+    position: relative;
+    margin-top: -16%;
+    margin-left: 50%;
+    font-size: 1vw;
+}
+
+#prevPostText{
+    margin-top: -25%;
+    right: -18%;
+    width: 100%;
+}
+
+#nextPostText{
+    margin-top: -28%;
+    margin-left: 7%;
+    width: 100%;
+}
+
+/* third row */
+
+#commentSectionImageText{
+    width: fit-content;
+    position: relative;
+    text-align: center;
+    font-size: 1.5vw;
+    top: -50%;
+    width: 40%;
+    
+}
+
+/* FOURTH ROW */
+#commentBodyCol{
+    margin-left: -5%;
+    position: relative;
+    text-align: center;
+
+}
+
+
+
+#commentBodyText{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#commentBodyCol{
+    margin: auto;
+    width: 50%;
+    margin-top: -10%;
+}
+
+
+#commentBodyImage{
+    width: 100%;
+}
+
+/* second row */
+
+#prevCommentCol, #nextCommentCol{
+    margin-left: -10%;
+    margin-top: -3%;
+}
+
+#prevCommentImage{
+
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    margin-left: 80%;
+
+}
+
+#nextCommentImage{
+    margin-left: 0%;
+
+}
+
+#prevCommentImage, #nextCommentImage{
+    position: relative;
+}
+
+
+#prevCommentImage:hover, #nextCommentImage:hover{
+    opacity: 70%;
+    transition: 100ms;
+}
+
+
+#nextCommentImageTextImage, #prevCommentImageTextImage{
+    position: relative;
+    width: 20vw;
+}
+
+#prevCommentImageTextImage{
+    left: 66%;
+    margin-top: -10%;
+}
+
+#nextCommentImageTextImage{
+    left: 5%;
+    margin-top: -10%;
+}
+
+
+#prevCommentText, #nextCommentText{
+    position: relative;
+    margin-top: -16%;
+    margin-left: 50%;
+    font-size: 1vw;
+}
+
+#prevCommentText{
+    margin-top: -28%;
+    right: -16%;
+    width: 100%;
+}
+
+#nextCommentText{
+    margin-top: -28%;
+    margin-left: 7%;
+    width: 100%;
+}
+
+#commentInfoContainer{
+    position: relative;
+    margin-top: -25%;
+}
+
+#commentAuthor{
+    left: 10%;
+}
+
+#commentDate{
+    right: 10%;
+}
+
+#commentBodyText{
+    font-size: 1vw;
+    width: 84%;
+    margin-top: 1%;
+    height: 13vh;
+    max-height: 4em;
+    overflow: auto;
+}
+
+/*fifth Row*/
+#returnCol, #addCommentCol{
+    margin-left: -5%;
+    position: relative;
+    text-align: center;
+}
+
+#returnImageText, #addCommentImageText{
+    position: relative;
+    top: -17%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1vw;
+
+}
+
+#returnImage:hover, #addCommentImage:hover{
+    opacity: 70%;
+    transition: 100ms;
+}
+
+#likeImageInfo, #commentsImageInfo{
+    margin-left: -5%;
+    position: relative;
+    text-align: center;
+    top: -26%;
+}
+
+#likesIcon, #commentsIcon{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    top: -100%;
+    left: 45%;
+}
+
+#likesImageTextCol, #commentsImageTextCol{
+    margin-top: 6%;
+}
+
+#likesImage, #commentsImage{
+    height: 80%;
+}
+#likesImageText, #commentsImageText{
+    position: relative;
+    top: -40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8vw;
+}
+
+#commentsImageInfo{
+    margin-top: 6%;
+}
+
+#commentsIcon{
+    left: 41%;
+}
+
+#returnCol{
+    margin-left: -1.2%;
+}
+#likesCol{
+    margin-left: 1%;
+}
+#commentsCol{
+    margin-left: 1%;
+}
+#addCommentCol{
+    left: 5.4%;
+}
