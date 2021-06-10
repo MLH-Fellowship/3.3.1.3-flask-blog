@@ -7,8 +7,14 @@ class PostPageGenerator:
         self.DB = PostDatabaseHelper()
         self.posts = self.DB.getAllPosts()
         self.postIndex = 0 if len(self.posts) > 0 else -1
-        #self.postComment = self.DB.getAllPostComments(self.posts[0]) if self.postIndex > -1 else []
-        #self.commentIndex = 0 if len(self.postComment) > 0 else -1
+        self.postComments = []
+        self.commentIndex = -1
+        self.obtainPostCommentInfo()
+
+
+    def obtainPostCommentInfo(self):
+        self.postComments = self.DB.getAllPostComments(self.posts[self.postIndex].postID) if self.postIndex > -1 else []
+        self.commentIndex = 0 if len(self.postComments) > 0 else -1
 
     def deletePost(self,postIndex):
         postToDelete = self.posts.pop(postIndex)
