@@ -54,6 +54,11 @@
     overflow: auto;
 }
 
+#postTitleText{
+    overflow: auto;
+    max-height: 30%;
+}
+
 #postBodyCol{
     margin: auto;
     width: 50%;
@@ -287,7 +292,7 @@
 
 }
 
-#returnImage:hover, #addCommentImage:hover{
+#returnImage:hover, #addCommentImage:hover, #likesIcon:hover{
     opacity: 70%;
     transition: 100ms;
 }

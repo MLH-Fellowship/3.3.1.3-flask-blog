@@ -46,7 +46,7 @@
     <!-- SECOND COLUMN-->
     <div class = "row">
         <div class = "col-2" align = "center" id = "prevPostCol">
-            <img class = "img-fluid" src = "../static/img/buttonImage.png" id = "prevPostImage"/>
+            <img class = "img-fluid" src = "../static/img/buttonImage.png" onclick = "window.location.href='{{ url_for( 'loadPrevPost') }}';"  id = "prevPostImage"/>
             <div id = "previousPostTextContainer">
                 <img class = "img-fluid" src = "../static/img/blogContentBackground.png" id = "prevPostImageTextImage"/>
                 <div id = "prevPostText">
@@ -85,7 +85,7 @@
     <!-- FOURTH COLUMN-->
     <div class = "row">
         <div class = "col-2" align = "center" id = "prevCommentCol">
-            <img class = "img-fluid" src = "../static/img/buttonImage.png" id = "prevCommentImage"/>
+            <img class = "img-fluid" src = "../static/img/buttonImage.png" onclick = "window.location.href='{{ url_for( 'loadPrevComment') }}';" id = "prevCommentImage"/>
             <div id = "previousCommentTextContainer">
                 <img class = "img-fluid" src = "../static/img/blogContentBackground.png" id = "prevCommentImageTextImage"/>
                 <div id = "prevCommentText">
@@ -117,7 +117,7 @@
         </div>
 
         <div class = "col-2" align = "center" id = "nextCommentCol">
-            <img class = "img-fluid" src = "../static/img/buttonImage.png" id = "nextCommentImage"/>
+            <img class = "img-fluid" src = "../static/img/buttonImage.png" onclick = "window.location.href='{{ url_for( 'loadNextComment') }}';" id = "nextCommentImage"/>
             <img class = "img-fluid" src = "../static/img/blogContentBackground.png" id = "nextCommentImageTextImage"/>
             <div id = "nextCommentText">
                     Next Comment
@@ -138,7 +138,7 @@
         <div class = "col-3" id = "likesCol">
             <div class = "row">
                 <div class = "col-12">
-                    <img class = "img-fluid" src = "../static/img/heartImage.png" id = "likesIcon"/>
+                    <img class = "img-fluid" src = "../static/img/heartImage.png"  onclick = "window.location.href='{{ url_for( 'giveLove') }}';" id = "likesIcon"/>
                 </div>
             </div>
             <div class = "row" id = "likeImageInfo">
@@ -163,7 +163,7 @@
                 <div class = "col-12" id = "commentsImageTextCol">
                     <img class = "img-fluid" src = "../static/img/blogContentBackground.png" id = "commentsImage"/>
                     <div id = "commentsImageText">
-                        Comment {{comment}} / {{comments | length}}
+                        Comment {{currentComment}} / {{totalComments}}
                     </div>
                 </div>
             </div>
