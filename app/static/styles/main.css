@@ -33,9 +33,9 @@
 
 /* Disable the below rule to start the intro animation!
    Enable to stop it from playing every time */
-.intro {
+/*.intro {
     display: none;
-}
+}*/
 
 .menuFlex {
     display: flex;
@@ -91,6 +91,9 @@
     border-image: url("../img/border1.png");
     border-image-slice: 20 fill;
     border-image-width: 30px;
+}
+.teamFlex>div>hr{
+    color: #DDD184;
 }
 
 .door>p {
