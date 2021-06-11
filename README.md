@@ -1,6 +1,6 @@
-# Flask-Blog
+# The lair of the Gamer Fellowship
 
-Minimal Flask template to get started on your blog application for MLH Fellowship Production Engineering track.
+A small pixel styled portfolio website with a blog, written with Flask and SQLite!
  
 
 ## Installation
@@ -22,13 +22,14 @@ pip install -r requirements.txt
 
 ## Usage
 
-
-Create a .env file using the example.env template
-
+Use development .env file
+```
+URL=localhost:5000
+FLASK_ENV=development
+```
 
 Start flask development server
 ```bash
-$ export FLASK_ENV=development
 $ flask run
 ```
 
