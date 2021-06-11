@@ -2,6 +2,26 @@
     background-image: url("../img/blogBackground.jpg");
 }
 
+@font-face {
+  font-family: "Atlantis";
+  src: url("fonts/atlantistext-bold-webfont.woff2") format('woff2'),
+       url("fonts/atlantistext-bold-webfont.woff") format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+ font-family: "Atlantis";
+  src: url("fonts/atlantistext-regular-webfont.woff2") format('woff2'),
+       url("fonts/atlantistext-regular-webfont.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: "Atlantis", normal;
+}
+
 
 /* first row */
 
@@ -32,6 +52,11 @@
     max-height: 50%;
     width: 80%;
     overflow: auto;
+}
+
+#postTitleText{
+    overflow: auto;
+    max-height: 30%;
 }
 
 #postBodyCol{
@@ -267,7 +292,7 @@
 
 }
 
-#returnImage:hover, #addCommentImage:hover{
+#returnImage:hover, #addCommentImage:hover, #likesIcon:hover{
     opacity: 70%;
     transition: 100ms;
 }

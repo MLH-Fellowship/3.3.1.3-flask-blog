@@ -1,17 +1,13 @@
-import mysql.connector
-from post import Post
-from comment import Comment
+import sqlite3
+from .post import Post
+from .comment import Comment
 from string import Template
 
 class PostDatabaseHelper:
     def __init__(self):
-        self.DB = mysql.connector.connect(
-                    host="localhost",
-                    user="root",
-                    password="password",
-                    database = "mlh"
-                )
-        self.cursor = self.DB.cursor( buffered = True)
+        self.DB = sqlite3.connect('test.db', check_same_thread=False)
+
+        self.cursor = self.DB.cursor()
 
     
     def insertPost(self, post):
@@ -67,16 +63,6 @@ class PostDatabaseHelper:
             index += 1
         return posts
 
-    def filterPost(self, category):
-        query = ("SELECT * FROM post WHERE postCategory = " + category)
-        self.cursor.execute(query)
-        filterResults = []
-        index = 0
-        for p in self.cursor:
-            postID, postTitle, postBody, postCategory, postDate = p
-            filterResults.append(Post(index,postID, postTitle, postBody, postCategory, postDate))
-            index += 1
-        return filterResults
 
     def __insertNewPostLike(self, post):
         title = post.postTitle
@@ -107,8 +93,25 @@ class PostDatabaseHelper:
         self.cursor.execute(query)
         self.DB.commit()
 
-    def deleteComment(self, comment):
+    def deleteComment(self, post):
         commentToDelete = str(comment.commentID)
         query = "DELETE FROM post WHERE postID = " + commentToDelete
         self.cursor.execute(query)
         self.DB.commit()
+
+    def getAllPostComments(self,postID):
+        query = "SELECT * from comments WHERE postID =" + str(postID)
+        self.cursor.execute(query)
+        comments = []
+        index = 0
+        for element in self.cursor:
+            commentID, _ , commentBody , commentDate , commentAuthor  = element
+            comments.append(Comment(index, commentAuthor, commentBody, commentDate, postID))
+
+        return comments
+
+    def addALike(self,post):
+        query = "update likes set likeCount = likeCount + 1 where postID = " + str(post.postID);
+        self.cursor.execute(query)
+        self.DB.commit()
+
