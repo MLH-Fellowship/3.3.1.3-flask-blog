@@ -1,17 +1,13 @@
-import mysql.connector
+import sqlite3
 from .post import Post
 from .comment import Comment
 from string import Template
 
 class PostDatabaseHelper:
     def __init__(self):
-        self.DB = mysql.connector.connect(
-                    host="localhost",
-                    user="root",
-                    password="password",
-                    database = "mlh"
-                )
-        self.cursor = self.DB.cursor( buffered = True)
+        self.DB = sqlite3.connect('test.db', check_same_thread=False)
+
+        self.cursor = self.DB.cursor()
 
     
     def insertPost(self, post):

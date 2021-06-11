@@ -9,9 +9,10 @@ load_dotenv()
 app = Flask(__name__)
 
 postGenerator = PostPageGenerator()
+
 @app.route('/')
 def index():
-    return render_template('index.html', title="MLH Fellow", url=os.getenv("URL"))
+    return render_template('index.html', title="Pixel Pals", url=os.getenv("URL"))
 
 @app.route('/blog')
 def blog():
@@ -33,7 +34,7 @@ def blog():
     totalComments = len(postGenerator.postComments)
 
     title = post.postTitle
-    return render_template('blogEntry.html', postCategory = postCategory , 
+    return render_template('blogEntry.html', postCategory = postCategory, 
     postTitle = title, postDate = postDate, postBody = postBody, commentAuthor = commentAuthor,\
     commentDate = commentDate, commentBody = commentBody, LikeCount = LikeCount, currentComment = currentComment, totalComments = totalComments )
 
@@ -79,6 +80,7 @@ def giveLove():
     postGenerator.posts[postIndex].postLikeCount += 1
     return blog()
 
+
 @app.route("/commentForm", methods=["GET", "POST"])
 def addCommentForm():
     return render_template("addComment.html")
@@ -109,3 +111,6 @@ def createPost():
     postGenerator.addPost(postToAdd)
     return blog()
 
+@app.route("/character")
+def character():
+    return render_template('character.html', title="About Us", url=os.getenv("URL"))
