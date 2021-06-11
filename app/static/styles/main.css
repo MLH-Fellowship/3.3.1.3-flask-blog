@@ -33,9 +33,9 @@
 
 /* Disable the below rule to start the intro animation!
    Enable to stop it from playing every time */
-/*.intro {
+.intro {
     display: none;
-}*/
+}
 
 .menuFlex {
     display: flex;
@@ -102,7 +102,7 @@
     color: #DDD184;
     text-shadow: 0px 2px #665642;   
     border-style: dashed solid;
-    margin: 0.5em auto;
+    margin: 0.6em auto;
     padding: 0.5em 0px;
     border-image: url("../img/border1.png");
     border-image-slice: 20 fill;
