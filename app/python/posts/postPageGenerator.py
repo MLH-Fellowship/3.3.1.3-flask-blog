@@ -25,3 +25,12 @@ class PostPageGenerator:
             self.post[index].arrayIndex -= 1
 
         self.DB.deletePost(postToDelete)
+        
+    def addComment(self, comment):
+        self.DB.addComment(comment)
+        self.postComments.append(comment)
+
+    def addPost(self,post):
+        self.DB.insertPost(post)
+        post.postID = self.DB.getPostID(post)
+        self.posts.append(post)

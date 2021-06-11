@@ -1,7 +1,7 @@
 <head>
 
     <meta charset="utf-8">
-    <title>This is a test</title>
+    <title>Hero's Diary</title>
     <meta name="description" content="The HTML5 Herald">
     <meta name="author" content="SitePoint">
     <link rel="stylesheet" href="../static/styles/blogEntry.css">
@@ -45,8 +45,8 @@
 
     <!-- SECOND COLUMN-->
     <div class = "row">
-        <div class = "col-2" align = "center" id = "prevPostCol">
-            <img class = "img-fluid" src = "../static/img/buttonImage.png" onclick = "window.location.href='{{ url_for( 'loadPrevPost') }}';"  id = "prevPostImage"/>
+        <div class = "col-2" align = "center" id = "prevPostCol" onclick = "window.location.href='{{ url_for( 'loadPrevPost') }}';">
+            <img class = "img-fluid" src = "../static/img/buttonImage.png"   id = "prevPostImage"/>
             <div id = "previousPostTextContainer">
                 <img class = "img-fluid" src = "../static/img/blogContentBackground.png" id = "prevPostImageTextImage"/>
                 <div id = "prevPostText">
@@ -62,8 +62,8 @@
             </div>
         </div>
 
-        <div class = "col-2" align = "center" id = "nextPostCol">
-            <img class = "img-fluid" src = "../static/img/buttonImage.png" onclick = "window.location.href='{{ url_for( 'loadNextPost') }}';" id = "nextPostImage"/>
+        <div class = "col-2" align = "center" id = "nextPostCol" onclick = "window.location.href='{{ url_for( 'loadNextPost') }}';">
+            <img class = "img-fluid" src = "../static/img/buttonImage.png"  id = "nextPostImage"/>
             <img class = "img-fluid" src = "../static/img/blogContentBackground.png" id = "nextPostImageTextImage"/>
             <div id = "nextPostText">
                     Next Post
@@ -84,8 +84,8 @@
 
     <!-- FOURTH COLUMN-->
     <div class = "row">
-        <div class = "col-2" align = "center" id = "prevCommentCol">
-            <img class = "img-fluid" src = "../static/img/buttonImage.png" onclick = "window.location.href='{{ url_for( 'loadPrevComment') }}';" id = "prevCommentImage"/>
+        <div class = "col-2" align = "center" id = "prevCommentCol" onclick = "window.location.href='{{ url_for( 'loadPrevComment') }}';">
+            <img class = "img-fluid" src = "../static/img/buttonImage.png"  id = "prevCommentImage"/>
             <div id = "previousCommentTextContainer">
                 <img class = "img-fluid" src = "../static/img/blogContentBackground.png" id = "prevCommentImageTextImage"/>
                 <div id = "prevCommentText">
@@ -116,8 +116,8 @@
             </div>
         </div>
 
-        <div class = "col-2" align = "center" id = "nextCommentCol">
-            <img class = "img-fluid" src = "../static/img/buttonImage.png" onclick = "window.location.href='{{ url_for( 'loadNextComment') }}';" id = "nextCommentImage"/>
+        <div class = "col-2" align = "center" id = "nextCommentCol" onclick = "window.location.href='{{ url_for( 'loadNextComment') }}';">
+            <img class = "img-fluid" src = "../static/img/buttonImage.png"  id = "nextCommentImage"/>
             <img class = "img-fluid" src = "../static/img/blogContentBackground.png" id = "nextCommentImageTextImage"/>
             <div id = "nextCommentText">
                     Next Comment
@@ -137,8 +137,8 @@
         
         <div class = "col-3" id = "likesCol">
             <div class = "row">
-                <div class = "col-12">
-                    <img class = "img-fluid" src = "../static/img/heartImage.png"  onclick = "window.location.href='{{ url_for( 'giveLove') }}';" id = "likesIcon"/>
+                <div class = "col-12" onclick = "window.location.href='{{ url_for( 'giveLove') }}';">
+                    <img class = "img-fluid" src = "../static/img/heartImage.png"  id = "likesIcon"/>
                 </div>
             </div>
             <div class = "row" id = "likeImageInfo">
@@ -169,10 +169,16 @@
             </div>
         </div>
 
-        <div class = "col-3" id = "addCommentCol">
-            <img class = "img-fluid" src = "../static/img/blogContentBackground.png" id = "addCommentImage"/>
+        <div class = "col-3" id = "addCommentCol" onclick = "window.location.href='{{ url_for( 'addCommentForm') }}';">
+            <img class = "img-fluid" src = "../static/img/blogContentBackground.png"  id = "addCommentImage"/>
             <div id = "addCommentImageText">
                 Add Comment
+            </div>
+        </div>
+        <div class = "col-12" id = "addPostCol" onclick = "window.location.href='{{ url_for( 'addPostForm') }}';">
+            <img class = "img-fluid" src = "../static/img/blogContentBackground.png"  id = "addPostImage"/>
+            <div id = "addPostImageText">
+                Create a New Post
             </div>
         </div>
     </div>
