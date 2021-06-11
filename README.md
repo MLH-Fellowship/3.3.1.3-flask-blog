@@ -7,6 +7,8 @@ A small pixel styled portfolio website with a blog, written with Flask and SQLit
 
 Make sure you have python3 and pip installed
 
+Change line 131 of the __init__.py file to your own absolute path before running the app
+
 
 Create virtual environment using virtualenv
 ```bash
