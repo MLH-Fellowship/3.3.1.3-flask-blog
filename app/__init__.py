@@ -3,6 +3,7 @@ from flask import Flask, render_template, send_from_directory, request
 from dotenv import load_dotenv
 from app.python.posts.postPageGenerator import PostPageGenerator
 from app.python.posts.comment import Comment
+from app.python.posts.post import Post
 
 load_dotenv()
 app = Flask(__name__)
@@ -77,3 +78,34 @@ def giveLove():
     postGenerator.DB.addALike(post)
     postGenerator.posts[postIndex].postLikeCount += 1
     return blog()
+
+@app.route("/commentForm", methods=["GET", "POST"])
+def addCommentForm():
+    return render_template("addComment.html")
+
+@app.route("/postForm", methods=["GET", "POST"])
+def addPostForm():
+    return render_template("addPost.html")
+
+@app.route("/createComment", methods=["GET", "POST"])
+def createComment():
+    author = request.form["commentAuthor"]
+    date = request.form["commentDate"]
+    body = request.form["commentBody"]
+    postID = postGenerator.posts[postGenerator.postIndex].postID
+    arrayIndex = len(postGenerator.postComments)
+    commentToAdd = Comment(arrayIndex, author, body, date, postID)
+    postGenerator.addComment(commentToAdd)
+    return blog()
+
+@app.route("/createPost", methods = ["GET", "POST"])
+def createPost():
+    title = request.form["postTitle"]
+    category = request.form["postCategory"]
+    date = request.form["postDate"]
+    body = request.form["postBody"]
+    arrayIndex = len(postGenerator.postComments)
+    postToAdd = Post(arrayIndex, -1, title, body, category, date)
+    postGenerator.addPost(postToAdd)
+    return blog()
+

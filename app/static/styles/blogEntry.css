@@ -257,13 +257,13 @@
 }
 
 /*fifth Row*/
-#returnCol, #addCommentCol{
+#returnCol, #addCommentCol, #addPostCol{
     margin-left: -5%;
     position: relative;
     text-align: center;
 }
 
-#returnImageText, #addCommentImageText{
+#returnImageText, #addCommentImageTex{
     position: relative;
     top: -17%;
     left: 50%;
@@ -272,7 +272,7 @@
 
 }
 
-#returnImage:hover, #addCommentImage:hover, #likesIcon:hover{
+#returnImage:hover, #addCommentImage:hover, #likesIcon:hover, #addPostImage:hover{
     opacity: 70%;
     transition: 100ms;
 }
@@ -326,4 +326,22 @@
 }
 #addCommentCol{
     left: 5.4%;
+}
+
+#addPostImageText{
+    position: relative;
+    top: -50%;
+    left: 57%;
+    transform: translate(-50%, -150%);
+    font-size: 1.5vw;
+}
+
+#addPostImage{
+    margin-top: -12%;
+    margin-left: 12%;
+}
+
+#addCommentImageText{
+    margin-top: -20%;
+    font-size: 0.96em;
 }
