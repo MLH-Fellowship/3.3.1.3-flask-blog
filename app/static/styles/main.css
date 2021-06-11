@@ -62,7 +62,6 @@
     margin: auto;
     align-items: center;
     justify-content: space-around;
-    background-image: url("../img/bricks.png");
 }
 
 .teamFlex::after {
@@ -78,7 +77,7 @@
     border-image: url("../img/border.png");
     border-image-slice: 24 fill;
     border-image-width: 30px;
-    margin: 2em;
+    margin: 4em;
     padding: 2em;
 }
 
@@ -88,7 +87,6 @@
     color: #DDD184;
     text-shadow: 0px 2px #665642;   
     border-style: dashed solid;
-    margin: 2em;
     padding: 2em;
     border-image: url("../img/border1.png");
     border-image-slice: 20 fill;
