@@ -80,8 +80,7 @@ class PostDatabaseHelper:
         self.cursor.execute(query)
         self.DB.commit()
 
-    def insertComment(self, post, comment):
-        postID = post.postID
+    def insertComment(self, postID, comment):
         commentBody = comment.commentBody
         commentDate = comment.commentDate
         commentAuthor = comment.commentAuthor

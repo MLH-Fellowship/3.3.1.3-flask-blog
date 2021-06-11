@@ -1,22 +1,32 @@
-#code taken from: https://crashlaker.github.io/python/2020/08/26/image_encode_decode_base64.html
-
 import base64
 import io
 from PIL import Image
 
 class ImageFormatter:
     
-    def encode_img(self,filename):
-        msg = b"<plain_txt_msg:img>"
-        with open(filename, "rb") as imageFile:
-            msg = msg + base64.b64encode(imageFile.read())
-        msg = msg + b"<!plain_txt_msg>"
-        return msg
+    def encode_img(self,image):
+        imageInfo = str(image.width) + ";" + str(image.height) + ';'
+        for row in range(image.width):
+            for column in range(image.height):
+                imageInfo += str( image.getpixel((row,column) )) + ";"
+        return imageInfo
 
     def decode_img(self,msg):
-        msg = msg[msg.find(b"<plain_txt_msg:img>")+len(b"<plain_txt_msg:img>"):
-                msg.find(b"<!plain_txt_msg>")]
-        msg = base64.b64decode(msg)
-        buf = io.BytesIO(msg)
-        img = Image.open(buf)
-        img.save("TE.jpg")
+        image_info = msg.split(';')
+        img = Image.new('RGB', (int(image_info[0]), int(image_info[1])), color = 'red')
+        pixels = img.load()
+        index = 2
+        
+        for row in range(int(image_info[0])):
+            for column in range(int(image_info[1])):
+                try:
+                    r,g,b,_ = image_info[index].split(',')
+                except Exception as E:
+                    r,g,b = image_info[index].split(',')
+                r = int(r[1:])
+                g = int(g[1:])
+                b = int(b[1:-1]) if b[-1] == ')' else int(b[1:])
+                
+                pixels[row,column] = (r,g,b)
+                index += 1
+        return img
