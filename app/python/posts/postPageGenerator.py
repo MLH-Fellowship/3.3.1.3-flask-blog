@@ -27,7 +27,7 @@ class PostPageGenerator:
         self.DB.deletePost(postToDelete)
         
     def addComment(self, comment):
-        self.DB.addComment(comment)
+        self.DB.insertComment(self.posts[self.postIndex].postID, comment)
         self.postComments.append(comment)
 
     def addPost(self,post):

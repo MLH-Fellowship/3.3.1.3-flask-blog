@@ -1,6 +1,6 @@
 class Image:
-    def __init__(self, imageID = -1, imageCode = "", imageTitle = "", imageDescription = ""):
+    def __init__(self, imageID = -1, imageFile = None, imageTitle = "", imageDescription = ""):
         self.imageID = imageID
-        self.imageCode = imageCode
+        self.imageFile = imageFile
         self.imageTitle = imageTitle
         self.imageDescription = imageDescription

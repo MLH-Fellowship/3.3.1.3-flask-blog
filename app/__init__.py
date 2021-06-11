@@ -4,11 +4,18 @@ from dotenv import load_dotenv
 from app.python.posts.postPageGenerator import PostPageGenerator
 from app.python.posts.comment import Comment
 from app.python.posts.post import Post
+from app.python.gallery.galleryController import GalleryController
+from app.python.gallery.image import Image
+from PIL import Image as IMG
 
 load_dotenv()
 app = Flask(__name__)
 
 postGenerator = PostPageGenerator()
+galleryGenerator = GalleryController()
+
+UPLOAD_FOLDER = '../app/static/img'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
@@ -43,9 +50,7 @@ def loadNextPost():
     postIndex = postGenerator.postIndex
     postIndex = postIndex + 1 if postIndex  + 1 < len(postGenerator.posts) else 0
     postGenerator.postIndex = postIndex
-    print(postGenerator.commentIndex)
     postGenerator.obtainPostCommentInfo()
-    print(postGenerator.commentIndex, "END")
     return blog()
 
 @app.route("/prevPost")
@@ -53,9 +58,7 @@ def loadPrevPost():
     postIndex = postGenerator.postIndex
     postIndex = postIndex - 1 if postIndex  -1 > -1 else len(postGenerator.posts) - 1
     postGenerator.postIndex = postIndex
-    print(postGenerator.commentIndex)
     postGenerator.obtainPostCommentInfo()
-    print(postGenerator.commentIndex, "END")
     return blog()
 
 @app.route("/nextComment")
@@ -94,9 +97,8 @@ def createComment():
     author = request.form["commentAuthor"]
     date = request.form["commentDate"]
     body = request.form["commentBody"]
-    postID = postGenerator.posts[postGenerator.postIndex].postID
     arrayIndex = len(postGenerator.postComments)
-    commentToAdd = Comment(arrayIndex, author, body, date, postID)
+    commentToAdd = Comment(arrayIndex, author, body, date, -1)
     postGenerator.addComment(commentToAdd)
     return blog()
 
@@ -114,3 +116,53 @@ def createPost():
 @app.route("/character")
 def character():
     return render_template('character.html', title="About Us", url=os.getenv("URL"))
+
+@app.route("/gallery")
+def gallery():
+    imageIndex = galleryGenerator.imageIndex
+    galleryImage = galleryGenerator.images[imageIndex] if imageIndex > -1 and imageIndex < len(galleryGenerator.images) else Image()
+    print(imageIndex)
+    #Template
+    imageFile = galleryGenerator.formatter.decode_img(galleryImage.imageFile)
+    if imageFile != None:
+        
+        imageTitle = galleryImage.imageTitle
+        imageDescription = galleryImage.imageDescription
+        imageFile.save('C:\\Users\\berna\\OneDrive\\Documents\\MLH\\Hack Week\\repo final\\3.3.1.3-flask-blog\\app\\static\\img\\galleryImageTemplate.jpg')
+  
+    else:
+        print("NOPE")
+
+
+    return render_template('gallery.html', imageTitle = imageTitle, imageDescription = imageDescription,
+            currentImage = imageIndex + 1, totalImages = len(galleryGenerator.images))
+
+@app.route("/nextImage")
+def loadNextImage():
+    imageIndex = galleryGenerator.imageIndex
+    imageIndex = imageIndex + 1 if (imageIndex  + 1) < len(galleryGenerator.images) else 0
+    galleryGenerator.imageIndex = imageIndex
+    return gallery()
+
+@app.route("/prevImage")
+def loadPrevImage():
+    imageIndex = galleryGenerator.imageIndex
+    imageIndex = imageIndex - 1 if (imageIndex  - 1) > -1  else len(galleryGenerator.images) - 1
+    galleryGenerator.imageIndex = imageIndex
+    return gallery()
+
+@app.route("/imageForm", methods=["GET", "POST"])
+def addImageForm():
+    return render_template('addImage.html')
+
+
+@app.route("/createImage", methods=["GET", "POST"])
+def createImage():
+    title = request.form["imageTitle"]
+    description = request.form["imageDescription"]
+    file = request.files['file']
+    
+    encoded_file = galleryGenerator.formatter.encode_img(IMG.open(file))
+    imageToAdd = Image(-1,encoded_file,title,description)
+    galleryGenerator.addImage(imageToAdd)
+    return gallery()

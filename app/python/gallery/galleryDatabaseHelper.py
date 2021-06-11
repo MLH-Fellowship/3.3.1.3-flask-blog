@@ -1,11 +1,19 @@
 import sqlite3
-from image import Image
+from .image import Image
 from string import Template
 
-class PostDatabaseHelper:
+class GalleryDatabaseHelper:
     def __init__(self):
         self.DB = sqlite3.connect('test.db', check_same_thread=False)
         self.cursor = self.DB.cursor()
+        self.cursor.execute("""
+        create table IF NOT EXISTS image(
+	        imageID int auto_increment primary key,
+            imageCode blob,
+            imageTitle text,
+            imageDescription text
+        );""")
+        self.DB.commit()
     
     def getAllImages(self):
         images = []
@@ -15,22 +23,22 @@ class PostDatabaseHelper:
         """
         self.cursor.execute(query)
         for element in self.cursor:
-            imageID, imageCode, imageTitle, imageDescription = element
-            images.append(Image(imageID, imageCode, imageTitle, imageDescription))
+            imageID, imageFile, imageTitle, imageDescription = element
+            images.append(Image(imageID, imageFile, imageTitle, imageDescription))
+        return images
 
     def addImage(self, image):
-        query = Template(
+        query = (
             """
-                INSERT INTO image(imageCode, imageTitle, imageDescription) VALUES
-                ($imageCode, $imageTitle, $imageDescription)
+                INSERT INTO image(imageCode, imageTitle, imageDescription) VALUES(?,?,?)
             """
         )
-        code = image.imageCode
+        code = image.imageFile
         title = image.imageTitle
         description = image.imageDescription
-        self.cursor.execute(query.substitute({"imageCode":code, "imageTitle": title, "imageDescription": description}))
+        self.cursor.execute(query,(code,title,description))
         self.DB.commit()
-        image.imageID = getImageID(image)
+        image.imageID = self.getImageID(image)
         return image
 
     def getImageID(self, image):
@@ -40,7 +48,7 @@ class PostDatabaseHelper:
         WHERE imageCode = "$imageCode" and imageTitle = "$imageTitle" and imageDescription = "$imageDescription"
         """)
 
-        code = image.imageCode
+        code = image.imageFile
         title = image.imageTitle
         description = image.imageDescription
         self.cursor.execute(query.substitute({'imageCode': code, 'imageTitle':title, 'imageDescription': description}))
