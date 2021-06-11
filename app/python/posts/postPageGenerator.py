@@ -3,8 +3,8 @@ from .postDatabaseHelper import PostDatabaseHelper
 
 #postID, postTitle, postCategory, postContent, postDat
 class PostPageGenerator:
-    def __init__(self):
-        self.DB = PostDatabaseHelper()
+    def __init__(self, db):
+        self.DB = PostDatabaseHelper(db)
         self.posts = self.DB.getAllPosts()
         self.postIndex = 0 if len(self.posts) > 0 else -1
         self.postComments = []

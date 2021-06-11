@@ -4,9 +4,8 @@ from .comment import Comment
 from string import Template
 
 class PostDatabaseHelper:
-    def __init__(self):
-        self.DB = sqlite3.connect('test.db', check_same_thread=False)
-
+    def __init__(self, db):
+        self.DB = db
         self.cursor = self.DB.cursor()
 
     
