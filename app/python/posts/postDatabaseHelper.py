@@ -9,6 +9,35 @@ class PostDatabaseHelper:
 
         self.cursor = self.DB.cursor()
 
+        self.cursor.execute("""
+            create table IF NOT EXISTS Post(
+	            postID INTEGER  PRIMARY KEY AUTOINCREMENT,
+                postTitle VARCHAR(255) NOT NULL,
+                postBody TEXT NOT NULL,
+                postCategory VARCHAR(2) NOT NULL,
+                postDate varchar(10) NOT NULL
+            ); 
+        """)
+        self.DB.commit()
+        self.cursor.execute("""
+        create table IF NOT EXISTS Likes(
+	        postID INTEGER PRIMARY KEY ,
+            likeCount int,
+            FOREIGN KEY (postID) REFERENCES POST(postID)
+        );""")
+        self.DB.commit()
+        self.cursor.execute("""
+            create table IF NOT EXISTS Comments(
+	commentID INTEGER  PRIMARY KEY AUTOINCREMENT,
+	postID int ,
+    commentBody varchar(255),
+    commentDate varchar(10),
+    commentAuthor varchar(25),
+    FOREIGN KEY (postID) REFERENCES POST(postID)
+); 
+        """)
+        self.DB.commit()
+
     
     def insertPost(self, post):
         title = post.postTitle
@@ -20,7 +49,7 @@ class PostDatabaseHelper:
         self.cursor.execute(query)
         self.DB.commit()
         post.postID = self.getPostID(post)
-        self.__insertNewPostLikes(post)
+        self.__insertNewPostLike(post)
     
     def deletePost(self, post):
         postToDelete = str(post.postID)

@@ -29,8 +29,12 @@ class PostPageGenerator:
     def addComment(self, comment):
         self.DB.insertComment(self.posts[self.postIndex].postID, comment)
         self.postComments.append(comment)
+        if self.commentIndex == -1:
+            self.commentIndex = 0
 
     def addPost(self,post):
         self.DB.insertPost(post)
         post.postID = self.DB.getPostID(post)
         self.posts.append(post)
+        if self.postIndex == -1:
+            self.postIndex = 0
