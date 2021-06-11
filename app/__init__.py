@@ -12,7 +12,7 @@ postGenerator = PostPageGenerator()
 
 @app.route('/')
 def index():
-    return render_template('index.html', title="Pixel Pals", url=os.getenv("URL"))
+    return render_template('index.html', title="Gamer Fellowship", url=os.getenv("URL"))
 
 @app.route('/blog')
 def blog():
