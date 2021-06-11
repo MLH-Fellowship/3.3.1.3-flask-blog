@@ -40,7 +40,6 @@
 .menuFlex {
     display: flex;
     flex-wrap: wrap;
-    flex: 100%;
     margin: 0px auto;
     align-items: center;
     justify-content: space-around;
@@ -54,6 +53,46 @@
     display: block;
     height: 64px;
     background-image: url("../img/curb.png");
+}
+
+.teamFlex {
+    flex-wrap: wrap;
+    display: flex;
+    width: 100%;
+    margin: auto;
+    align-items: center;
+    justify-content: space-around;
+    background-image: url("../img/bricks.png");
+}
+
+.teamFlex::after {
+    content: "";
+    width: 100%;
+    background-color: #FFBA10;
+    display: block;
+    height: 64px;
+    background-image: url("../img/curb.png");
+}
+
+#team {
+    border-image: url("../img/border.png");
+    border-image-slice: 24 fill;
+    border-image-width: 30px;
+    margin: 2em;
+    padding: 2em;
+}
+
+.teamFlex>div {
+    font-size: 2em;
+    font-family: "Atlantis", normal;
+    color: #DDD184;
+    text-shadow: 0px 2px #665642;   
+    border-style: dashed solid;
+    margin: 2em;
+    padding: 2em;
+    border-image: url("../img/border1.png");
+    border-image-slice: 20 fill;
+    border-image-width: 30px;
 }
 
 .door>p {
