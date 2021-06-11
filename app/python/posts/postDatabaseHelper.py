@@ -1,17 +1,14 @@
-import mysql.connector
+import sqlite3
 from .post import Post
 from .comment import Comment
 from string import Template
 
 class PostDatabaseHelper:
     def __init__(self):
-        self.DB = mysql.connector.connect(
-                    host="localhost",
-                    user="root",
-                    password="password",
-                    database = "mlh"
-                )
-        self.cursor = self.DB.cursor( buffered = True)
+        sqlite3.enable_callback_tracebacks(True)
+        self.DB = sqlite3.connect('test.db')
+
+        self.cursor = self.DB.cursor()
 
     
     def insertPost(self, post):
@@ -45,8 +42,10 @@ class PostDatabaseHelper:
         self.DB.commit()
 
     def getAllPosts(self):
+        print("We're getting all posts!")
         self.cursor.execute("SELECT * from Post")
         postQuery = [x for x in self.cursor]
+        print(postQuery)
         posts = []
         index = 0
         for post in postQuery:
