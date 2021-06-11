@@ -1,4 +1,4 @@
-# The lair of the Gamer Fellowship
+# The Lair of the Gamer Fellowship
 
 A small pixel styled portfolio website with a blog, written with Flask and SQLite!
  
@@ -8,10 +8,9 @@ A small pixel styled portfolio website with a blog, written with Flask and SQLit
 Make sure you have python3 and pip installed
 
 
-Create and activate virtual environment using virtualenv
+Create virtual environment using virtualenv
 ```bash
 $ python -m venv python3-virtualenv
-$ source python3-virtualenv/bin/activate
 ```
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install all dependencies
@@ -26,6 +25,16 @@ Use development .env file
 ```
 URL=localhost:5000
 FLASK_ENV=development
+```
+Start the Python virtual environment
+
+Linux/MacOS:
+```bash
+$ source python3-virtualenv/bin/activate
+```
+Windows:
+```
+> python3-virtualenv\Scripts\activate.bat
 ```
 
 Start flask development server
