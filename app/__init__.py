@@ -3,11 +3,13 @@ from flask import Flask, render_template, send_from_directory, request
 from dotenv import load_dotenv
 from app.python.posts.postPageGenerator import PostPageGenerator
 from app.python.posts.comment import Comment
+from app.python.posts.post import Post
 
 load_dotenv()
 app = Flask(__name__)
 
 postGenerator = PostPageGenerator()
+
 @app.route('/')
 def index():
     return render_template('index.html', title="Pixel Pals", url=os.getenv("URL"))
@@ -32,7 +34,7 @@ def blog():
     totalComments = len(postGenerator.postComments)
 
     title = post.postTitle
-    return render_template('blogEntry.html', postCategory = postCategory , 
+    return render_template('blogEntry.html', postCategory = postCategory, 
     postTitle = title, postDate = postDate, postBody = postBody, commentAuthor = commentAuthor,\
     commentDate = commentDate, commentBody = commentBody, LikeCount = LikeCount, currentComment = currentComment, totalComments = totalComments )
 
@@ -40,7 +42,7 @@ def blog():
 def loadNextPost():
     postIndex = postGenerator.postIndex
     postIndex = postIndex + 1 if postIndex  + 1 < len(postGenerator.posts) else 0
-    postGenerator.postIndex = postIndex ---
+    postGenerator.postIndex = postIndex
     print(postGenerator.commentIndex)
     postGenerator.obtainPostCommentInfo()
     print(postGenerator.commentIndex, "END")

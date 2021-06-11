@@ -6,7 +6,7 @@ from string import Template
 class PostDatabaseHelper:
     def __init__(self):
         sqlite3.enable_callback_tracebacks(True)
-        self.DB = sqlite3.connect('test.db')
+        self.DB = sqlite3.connect('test.db', check_same_thread=False)
 
         self.cursor = self.DB.cursor()
 
