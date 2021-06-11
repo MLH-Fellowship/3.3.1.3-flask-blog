@@ -102,5 +102,19 @@ class PostDatabaseHelper:
         self.cursor.execute(query)
         self.DB.commit()
 
- 
+    def getAllPostComments(self,postID):
+        query = "SELECT * from comments WHERE postID =" + str(postID)
+        self.cursor.execute(query)
+        comments = []
+        index = 0
+        for element in self.cursor:
+            commentID, _ , commentBody , commentDate , commentAuthor  = element
+            comments.append(Comment(index, commentAuthor, commentBody, commentDate, postID))
+
+        return comments
+
+    def addALike(self,post):
+        query = "update likes set likeCount = likeCount + 1 where postID = " + str(post.postID);
+        self.cursor.execute(query)
+        self.DB.commit()
 
