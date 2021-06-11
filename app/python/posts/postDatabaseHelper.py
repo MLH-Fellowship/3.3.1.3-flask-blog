@@ -5,7 +5,6 @@ from string import Template
 
 class PostDatabaseHelper:
     def __init__(self):
-        sqlite3.enable_callback_tracebacks(True)
         self.DB = sqlite3.connect('test.db', check_same_thread=False)
 
         self.cursor = self.DB.cursor()
@@ -42,10 +41,8 @@ class PostDatabaseHelper:
         self.DB.commit()
 
     def getAllPosts(self):
-        print("We're getting all posts!")
         self.cursor.execute("SELECT * from Post")
         postQuery = [x for x in self.cursor]
-        print(postQuery)
         posts = []
         index = 0
         for post in postQuery:
