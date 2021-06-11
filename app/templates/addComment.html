@@ -1,0 +1,49 @@
+<head>
+
+    <meta charset="utf-8">
+    <title>This is a test</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+    <link rel="stylesheet" href="../static/styles/forms.css">
+    <link 
+        rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+        crossorigin="anonymous"
+    >
+
+</head>
+
+<body class = "container fluid" id = "formsContainer">
+    <form action ="/createComment" method = "post">
+        <div align = "center" class = "form-group">
+            <div class = "row">
+                <div class = "col">
+                    <label class = "formLabel" for = "commentAuthor">Comment's Author</label>
+                    <input name = "commentAuthor" type="text" class="form-control" maxlength="50" id="commentAuthor" placeholder="Type the name of the author of this comment">
+                </div>
+            </div>
+            <br><br>
+            <div class = "row">
+                <div class = "col">
+                    <label class = "formLabel" for = "commentDate">Comment Date</label>
+                    <input name = "commentDate" type="date" class="form-control" maxlength="8" id="commentDate" placeholder="mm/dd/yr">
+                </div>
+            </div>
+            <br><br>
+            <div class = "row">
+                <div class = "col">
+                    <label class = "formLabel" for = "commentAuthor">Your Comment</label>
+                    <input name = "commentBody" type="text" class="form-control" id="commentAuthor" placeholder="Type the name of the author of this comment">
+                </div>
+            </div>
+            <br>
+            <div class = "row">
+                <div class = "col">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+            
+        </div>
+    </form>
+</body>
