@@ -33,4 +33,4 @@ class PostPageGenerator:
     def addPost(self,post):
         self.DB.insertPost(post)
         post.postID = self.DB.getPostID(post)
-        self.posts
+        self.posts.append(post)
