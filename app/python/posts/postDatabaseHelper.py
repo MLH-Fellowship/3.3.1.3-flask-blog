@@ -19,6 +19,7 @@ class PostDatabaseHelper:
         query += '("' + title + '","' + body + '","' + category + '","' + date +'");'
         self.cursor.execute(query)
         self.DB.commit()
+        post.postID = self.getPostID(post)
         self.__insertNewPostLikes(post)
     
     def deletePost(self, post):
@@ -115,3 +116,16 @@ class PostDatabaseHelper:
         self.cursor.execute(query)
         self.DB.commit()
 
+    def getPostID(self, post):
+        query = Template(
+        """
+        SELECT postID FROM post
+        WHERE postTitle = "$postTitle" and postDate = "$postDate" and postCategory = "$postCategory" and postBody = "$postBody"
+        """)
+        title = post.postTitle
+        date = post.postDate
+        category = post.postCategory
+        body = post.postBody
+        self.cursor.execute(query.substitute({'postTitle': title, 'postDate':date, 'postCategory': category, 'postBody': body}))
+        for row in self.cursor:
+            return row[0]
