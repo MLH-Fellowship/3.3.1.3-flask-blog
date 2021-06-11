@@ -1,0 +1,11 @@
+#formsContainer{
+    background-image: url("../img/blogBackground.jpg");
+    margin-top: 10%;
+    vertical-align: center;
+}
+
+.formLabel{
+    background-color:white;
+    border: 1px solid black;
+    background-size: 100%;
+}

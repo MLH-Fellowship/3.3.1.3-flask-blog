@@ -2,6 +2,26 @@
     background-image: url("../img/blogBackground.jpg");
 }
 
+@font-face {
+  font-family: "Atlantis";
+  src: url("fonts/atlantistext-bold-webfont.woff2") format('woff2'),
+       url("fonts/atlantistext-bold-webfont.woff") format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+ font-family: "Atlantis";
+  src: url("fonts/atlantistext-regular-webfont.woff2") format('woff2'),
+       url("fonts/atlantistext-regular-webfont.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: "Atlantis", normal;
+}
+
 
 /* first row */
 
@@ -32,6 +52,11 @@
     max-height: 50%;
     width: 80%;
     overflow: auto;
+}
+
+#postTitleText{
+    overflow: auto;
+    max-height: 30%;
 }
 
 #postBodyCol{
@@ -252,13 +277,13 @@
 }
 
 /*fifth Row*/
-#returnCol, #addCommentCol{
+#returnCol, #addCommentCol, #addPostCol{
     margin-left: -5%;
     position: relative;
     text-align: center;
 }
 
-#returnImageText, #addCommentImageText{
+#returnImageText, #addCommentImageTex{
     position: relative;
     top: -17%;
     left: 50%;
@@ -267,7 +292,7 @@
 
 }
 
-#returnImage:hover, #addCommentImage:hover{
+#returnImage:hover, #addCommentImage:hover, #likesIcon:hover, #addPostImage:hover{
     opacity: 70%;
     transition: 100ms;
 }
@@ -321,4 +346,22 @@
 }
 #addCommentCol{
     left: 5.4%;
+}
+
+#addPostImageText{
+    position: relative;
+    top: -50%;
+    left: 57%;
+    transform: translate(-50%, -150%);
+    font-size: 1.5vw;
+}
+
+#addPostImage{
+    margin-top: -12%;
+    margin-left: 12%;
+}
+
+#addCommentImageText{
+    margin-top: -20%;
+    font-size: 0.96em;
 }
