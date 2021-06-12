@@ -1,5 +1,6 @@
 # The Lair of the Gamer Fellowship
 
+![Main page screenshot](https://media.discordapp.net/attachments/851608538710540319/853046071138582538/unknown.png?width=1307&height=630)
 A small pixel styled portfolio website with a blog, written with Flask and SQLite!
  
 
@@ -48,3 +49,17 @@ $ flask run
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+Currently, the system design is as  follows:
+
+### Post Component
+![Post component uml diagram](https://media.discordapp.net/attachments/851608538710540319/853089116485189642/unknown.png)
+
+### Post Database
+![Post database design](https://media.discordapp.net/attachments/851608538710540319/853089683310510160/unknown.png)
+
+### Gallery Component
+![Gallery component UML Diagram](https://media.discordapp.net/attachments/851608538710540319/853091712851640320/unknown.png)
+
+### Gallery Database
+![Gallery database design](https://media.discordapp.net/attachments/851608538710540319/853091970544435259/unknown.png)
