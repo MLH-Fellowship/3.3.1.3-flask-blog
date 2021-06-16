@@ -15,7 +15,7 @@ def ProjectDBHelper(DatabaseTemplate):
 
     def readHelper(DB, Index):
         cursor = DB.cursor()
-        query = "SELECT * FROM post LIMIT 1 OFFSET " + str(Index - 1)
+        query = "SELECT * FROM post LIMIT 1 OFFSET " + str(Index )
         cursor.execute(query) 
         for row in cursor:
             ipID, file, title, description = row
@@ -31,3 +31,10 @@ def ProjectDBHelper(DatabaseTemplate):
         query = "DELETE FROM projectPost WHERE projectID = " + str(projectID)
         cursor.execute(query)
         DB.commit()
+
+    def countHelper(DB, comment):
+        cursor = DB.cursor()
+        query = "SELECT COUNT(projectID) FROM project"
+        cursor.execute(query)
+        for row in cursor:
+            return row

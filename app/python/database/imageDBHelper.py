@@ -15,7 +15,7 @@ def ImagePostDBHelper(DatabaseTemplate):
 
     def readHelper(DB, Index):
         cursor = DB.cursor()
-        query = "SELECT * FROM post LIMIT 1 OFFSET " + str(Index - 1)
+        query = "SELECT * FROM post LIMIT 1 OFFSET " + str(Index)
         cursor.execute(query) 
         for row in cursor:
             ipID, file, title, description = row
@@ -31,3 +31,10 @@ def ImagePostDBHelper(DatabaseTemplate):
         query = "DELETE FROM imagepost WHERE imageID = " + str(imagePostID)
         cursor.execute(query)
         DB.commit()
+
+    def countHelper(DB, comment):
+        cursor = DB.cursor()
+        query = "SELECT COUNT(imageID) FROM imagePost"
+        cursor.execute(query)
+        for row in cursor:
+            return row
