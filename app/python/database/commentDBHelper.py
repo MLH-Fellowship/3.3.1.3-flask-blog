@@ -14,7 +14,7 @@ def CommentDBHelper(DatabaseTemplate):
 
     def readHelper(DB, Index):
         cursor = DB.cursor()
-        query = "SELECT * FROM post LIMIT 1 OFFSET " + str(Index - 1)
+        query = "SELECT * FROM post LIMIT 1 OFFSET " + str(Index)
         cursor.execute(query) 
         for row in cursor:
             cID, author, content,date = row
@@ -31,4 +31,9 @@ def CommentDBHelper(DatabaseTemplate):
         cursor.execute(query)
         DB.commit()
 
-    
+    def countHelper(DB, comment):
+        cursor = DB.cursor()
+        query = "SELECT COUNT(commentID) FROM comment"
+        cursor.execute(query)
+        for row in cursor:
+            return row

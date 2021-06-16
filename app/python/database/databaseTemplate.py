@@ -11,3 +11,6 @@ class DatabaseTemplate:
 
     def delete(DB,element):
         deleteHelper(DB,element)
+
+    def count(DB,element):
+        countHelper(DB,element)

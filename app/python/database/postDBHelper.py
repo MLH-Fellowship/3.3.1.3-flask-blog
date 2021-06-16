@@ -15,7 +15,7 @@ def PostDBHelper(DatabaseTemplate):
 
     def readHelper(DB, Index):
         cursor = DB.cursor()
-        query = "SELECT * FROM post LIMIT 1 OFFSET " + str(Index - 1)
+        query = "SELECT * FROM post LIMIT 1 OFFSET " + str(Index )
         cursor.execute(query) 
         for row in cursor:
             pID, title, content, category, date, likes, comments = row
@@ -32,5 +32,9 @@ def PostDBHelper(DatabaseTemplate):
         cursor.execute(query)
         DB.commit()
 
-    
-
+    def countHelper(DB, comment):
+        cursor = DB.cursor()
+        query = "SELECT COUNT(postID) FROM post"
+        cursor.execute(query)
+        for row in cursor:
+            return row
