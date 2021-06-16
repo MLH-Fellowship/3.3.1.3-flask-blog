@@ -1,3 +1,4 @@
+
 class Project:
     def __init__(projectID = -1, projectName = "", projectDescription = "", projectURL = "", projectImageFile = ""):
         self.projectID = projectID

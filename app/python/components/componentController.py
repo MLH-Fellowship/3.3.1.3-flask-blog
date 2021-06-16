@@ -9,3 +9,5 @@ class ComponentController:
 
     def decreaseIndex(self):
         self.componentIndex = self.componentIndex - 1 if  self.componentIndex - 1 > -1 else self.componentCount - 1
+
+        

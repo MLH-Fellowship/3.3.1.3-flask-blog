@@ -3,7 +3,7 @@ class DatabaseTemplate:
     def create(DB,element):
         createHelper(DB, element)
 
-    def read(DB,element, index, loadNext):
+    def read(DB,element, index):
         return readHelper(DB,element,index)
 
     def update(DB, element):
