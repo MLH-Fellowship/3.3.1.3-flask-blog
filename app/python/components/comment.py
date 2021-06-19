@@ -1,5 +1,5 @@
 class Comment:
-    def __init__(commentID = -1, commentAuthor = "", commentContent = "", commentDate = ""):
+    def __init__(self,commentID = -1, commentAuthor = "", commentContent = "", commentDate = ""):
         self.commentID = commentID
         self.commentAuthor = commentAuthor
         self.commentContent = commentContent

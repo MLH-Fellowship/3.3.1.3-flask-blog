@@ -23,7 +23,7 @@ class DatabaseController:
         elif elementType == "imagePost":
             dbToCall = self.imagePostDB
 
-        elif: elementType == "project":
+        elif elementType == "project":
             dbToCall = self.projectDB
         
         else:

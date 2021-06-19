@@ -1,10 +1,10 @@
 from .componentController import ComponentController
-from "../database/databaseController.py" import DatabaseController
+from ..database.databaseController import DatabaseController
 from .post import Post
 from .comment import Comment
 from .imagePost import ImagePost
 from .project import Project
-from .imageFormatter import imageFormatter
+from .imageFormatter import ImageFormatter
 import sqlite3
 
 class ApplicationController:
@@ -19,9 +19,8 @@ class ApplicationController:
     def initializeComponentController(self,component, componentClass):
         componentCount = self.DBController.decideOperation(component,"count")
 
-        if componentCount > 0:
-            #I need to update database read functions to return the component
-            return ComponentController(0,componentCount,componentClass)
+        if componentCount != None and componentCount > 0:
+            return ComponentController(0,componentCount,self.DBController.decideOperation(component,"read",0))
 
         return ComponentController(-1,-1,componentClass)
             

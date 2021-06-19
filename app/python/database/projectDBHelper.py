@@ -1,6 +1,6 @@
 from .databaseTemplate import DatabaseTemplate
 
-def ProjectDBHelper(DatabaseTemplate):
+class ProjectDBHelper(DatabaseTemplate):
 
     def createHelper(DB, project):
         cursor =  DB.cursor()

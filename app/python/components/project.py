@@ -1,6 +1,6 @@
 
 class Project:
-    def __init__(projectID = -1, projectName = "", projectDescription = "", projectURL = "", projectImageFile = ""):
+    def __init__(self,projectID = -1, projectName = "", projectDescription = "", projectURL = "", projectImageFile = ""):
         self.projectID = projectID
         self.projectName = projectName
         self.projectDescription = projectDescription
