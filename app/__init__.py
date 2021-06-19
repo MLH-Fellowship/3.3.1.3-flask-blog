@@ -1,18 +1,13 @@
 import os
 from flask import Flask, render_template, send_from_directory, request
 from dotenv import load_dotenv
-from app.python.posts.postPageGenerator import PostPageGenerator
-from app.python.posts.comment import Comment
-from app.python.posts.post import Post
-from app.python.gallery.galleryController import GalleryController
-from app.python.gallery.image import Image
+from app.python.components.applicationController import ApplicationController
 from PIL import Image as IMG
 
 load_dotenv()
 app = Flask(__name__)
 
-postGenerator = PostPageGenerator()
-galleryGenerator = GalleryController()
+controller = ApplicationController()
 
 UPLOAD_FOLDER = '../app/static/img'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -23,28 +18,30 @@ def index():
 
 @app.route('/blog')
 def blog():
-    postIndex = postGenerator.postIndex
-    commentIndex = postGenerator.commentIndex
-    post = postGenerator.posts[postIndex] if postIndex > -1 and postIndex < len(postGenerator.posts) else Post()
-    comment = postGenerator.postComments[commentIndex] if commentIndex > -1 and commentIndex < len(postGenerator.postComments) else Comment()
 
+    post = controller.PostController.component
+    comment = controller.CommentController.component
     #Template
     postCategory = post.postCategory
     postTitle = post.postTitle
     postDate = post.postDate
-    postBody = post.postBody
+    postBody = post.postContent
     commentAuthor = comment.commentAuthor
     commentDate = comment.commentDate
-    commentBody = comment.commentBody
+    commentBody = comment.commentContent
     LikeCount = post.postLikeCount
-    currentComment = commentIndex + 1
-    totalComments = len(postGenerator.postComments)
+
 
     title = post.postTitle
     return render_template('blogEntry.html', postCategory = postCategory, 
     postTitle = title, postDate = postDate, postBody = postBody, commentAuthor = commentAuthor,\
-    commentDate = commentDate, commentBody = commentBody, LikeCount = LikeCount, currentComment = currentComment, totalComments = totalComments )
+    commentDate = commentDate, commentBody = commentBody )
 
+
+@app.route("/character")
+def character():
+    return render_template('character.html', title="About Us", url=os.getenv("URL"))
+"""
 @app.route("/nextPost")
 def loadNextPost():
     postIndex = postGenerator.postIndex
@@ -82,7 +79,7 @@ def giveLove():
     postGenerator.DB.addALike(post)
     postGenerator.posts[postIndex].postLikeCount += 1
     return blog()
-
+"""
 
 @app.route("/commentForm", methods=["GET", "POST"])
 def addCommentForm():
@@ -113,10 +110,6 @@ def createPost():
     postGenerator.addPost(postToAdd)
     return blog()
 
-@app.route("/character")
-def character():
-    return render_template('character.html', title="About Us", url=os.getenv("URL"))
-
 @app.route("/gallery")
 def gallery():
     imageIndex = galleryGenerator.imageIndex
@@ -137,6 +130,8 @@ def gallery():
     return render_template('gallery.html', imageTitle = imageTitle, imageDescription = imageDescription,
             currentImage = imageIndex + 1, totalImages = len(galleryGenerator.images))
 
+"""
+
 @app.route("/nextImage")
 def loadNextImage():
     imageIndex = galleryGenerator.imageIndex
@@ -150,6 +145,7 @@ def loadPrevImage():
     imageIndex = imageIndex - 1 if (imageIndex  - 1) > -1  else len(galleryGenerator.images) - 1
     galleryGenerator.imageIndex = imageIndex
     return gallery()
+"""
 
 @app.route("/imageForm", methods=["GET", "POST"])
 def addImageForm():
@@ -166,3 +162,4 @@ def createImage():
     imageToAdd = Image(-1,encoded_file,title,description)
     galleryGenerator.addImage(imageToAdd)
     return gallery()
+

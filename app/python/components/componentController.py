@@ -1,5 +1,5 @@
 class ComponentController:
-    def __init__(componentIndex = -1, componentCount = -1, component = None):
+    def __init__(self,componentIndex = -1, componentCount = -1, component = None):
         self.componentIndex = componentIndex
         self.componentCount = componentCount
         self.component = component

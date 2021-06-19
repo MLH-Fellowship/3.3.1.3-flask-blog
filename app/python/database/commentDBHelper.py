@@ -1,6 +1,6 @@
 from .databaseTemplate import DatabaseTemplate
 
-def CommentDBHelper(DatabaseTemplate):
+class CommentDBHelper(DatabaseTemplate):
 
     def createHelper(DB, comment):
         cursor =  DB.cursor()
@@ -12,9 +12,10 @@ def CommentDBHelper(DatabaseTemplate):
         cursor.execute(query)
         DB.commit()
 
-    def readHelper(DB, Index):
+    def readHelper(DB, Info):
+        Index, postID = Info
         cursor = DB.cursor()
-        query = "SELECT * FROM post LIMIT 1 OFFSET " + str(Index)
+        query = "SELECT * FROM comment where postID = " + str(postID) + " LIMIT 1 OFFSET " + str(Index)
         cursor.execute(query) 
         for row in cursor:
             cID, author, content,date = row

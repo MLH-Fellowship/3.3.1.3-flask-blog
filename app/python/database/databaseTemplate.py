@@ -1,5 +1,5 @@
 class DatabaseTemplate:
-    
+        
     def create(DB,element):
         createHelper(DB, element)
 

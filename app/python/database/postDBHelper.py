@@ -1,6 +1,6 @@
 from .databaseTemplate import DatabaseTemplate
 
-def PostDBHelper(DatabaseTemplate):
+class PostDBHelper(DatabaseTemplate):
 
     def createHelper(DB, post):
         cursor =  DB.cursor()
