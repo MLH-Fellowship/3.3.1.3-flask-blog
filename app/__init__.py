@@ -163,3 +163,6 @@ def createImage():
     galleryGenerator.addImage(imageToAdd)
     return gallery()
 
+@app.route("/health")
+def health():
+    return "Hp: 100"
