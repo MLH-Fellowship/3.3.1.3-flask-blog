@@ -1,16 +1,16 @@
 class DatabaseTemplate:
         
-    def create(DB,element):
-        createHelper(DB, element)
+    def create(self,DB,element):
+        self.createHelper(DB, element)
 
-    def read(DB,element, index):
-        return readHelper(DB,element,index)
+    def read(self,DB,element, index):
+        return self.readHelper(DB,index)
 
-    def update(DB, element):
-        updateHelper(DB,element)
+    def update(self,DB, element):
+        self.updateHelper(DB,element)
 
-    def delete(DB,element):
-        deleteHelper(DB,element)
+    def delete(self,DB,element):
+        self.deleteHelper(DB,element)
 
-    def count(DB,element):
-        countHelper(DB,element)
+    def count(self,DB,element):
+        return self.countHelper(DB,element)

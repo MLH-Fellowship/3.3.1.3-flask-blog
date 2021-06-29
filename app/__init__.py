@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, send_from_directory, request
 from dotenv import load_dotenv
 from app.python.components.applicationController import ApplicationController
+from app.python.components.post import Post
 from PIL import Image as IMG
 
 load_dotenv()
@@ -40,8 +41,8 @@ def blog():
 
 @app.route("/character")
 def character():
-    return render_template('character.html', title="About Us", url=os.getenv("URL"))
-"""
+    return render_template('character.html', url=os.getenv("URL"))
+
 @app.route("/nextPost")
 def loadNextPost():
     postIndex = postGenerator.postIndex
@@ -79,7 +80,7 @@ def giveLove():
     postGenerator.DB.addALike(post)
     postGenerator.posts[postIndex].postLikeCount += 1
     return blog()
-"""
+
 
 @app.route("/commentForm", methods=["GET", "POST"])
 def addCommentForm():
@@ -105,13 +106,19 @@ def createPost():
     category = request.form["postCategory"]
     date = request.form["postDate"]
     body = request.form["postBody"]
-    arrayIndex = len(postGenerator.postComments)
-    postToAdd = Post(arrayIndex, -1, title, body, category, date)
-    postGenerator.addPost(postToAdd)
+    #postID = -1, postTitle = "", postContent = "", postCategory = "", postDate = "", postLikeCount = 0, postCommentCount = 0)
+    nextPost = Post()
+    nextPost.postTitle = title
+    nextPost.postCategory = category
+    nextPost.postContent = body
+    nextPost.postDate = date
+    controller.DBController.decideOperation("post","create",nextPost,controller.DB)
+    
     return blog()
-
+"""
 @app.route("/gallery")
 def gallery():
+
     imageIndex = galleryGenerator.imageIndex
     galleryImage = galleryGenerator.images[imageIndex] if imageIndex > -1 and imageIndex < len(galleryGenerator.images) else Image()
     print(imageIndex)
@@ -121,7 +128,7 @@ def gallery():
         
         imageTitle = galleryImage.imageTitle
         imageDescription = galleryImage.imageDescription
-        imageFile.save(YOUR_PATH + 'app\\static\\img\\galleryImageTemplate.jpg')
+        imageFile.save(r'app\\static\\img\\galleryImageTemplate.jpg')
   
     else:
         print("NOPE")
@@ -130,7 +137,7 @@ def gallery():
     return render_template('gallery.html', imageTitle = imageTitle, imageDescription = imageDescription,
             currentImage = imageIndex + 1, totalImages = len(galleryGenerator.images))
 
-"""
+
 
 @app.route("/nextImage")
 def loadNextImage():
@@ -145,7 +152,7 @@ def loadPrevImage():
     imageIndex = imageIndex - 1 if (imageIndex  - 1) > -1  else len(galleryGenerator.images) - 1
     galleryGenerator.imageIndex = imageIndex
     return gallery()
-"""
+
 
 @app.route("/imageForm", methods=["GET", "POST"])
 def addImageForm():
@@ -162,7 +169,16 @@ def createImage():
     imageToAdd = Image(-1,encoded_file,title,description)
     galleryGenerator.addImage(imageToAdd)
     return gallery()
+"""
 
 @app.route("/health")
 def health():
     return "Hp: 100"
+
+@app.route("/register", methods=('GET','POST'))
+def register():
+    return "Register",501
+
+@app.route("/login" , methods=('GET','POST'))
+def login():
+    return "Login",501

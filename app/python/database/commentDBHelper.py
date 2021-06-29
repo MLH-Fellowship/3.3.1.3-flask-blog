@@ -1,8 +1,8 @@
 from .databaseTemplate import DatabaseTemplate
-
+from app.python.components.comment import Comment
 class CommentDBHelper(DatabaseTemplate):
 
-    def createHelper(DB, comment):
+    def createHelper(self, DB, comment):
         cursor =  DB.cursor()
         author = comment.commentAuthor
         content = comment.commentContent
@@ -12,7 +12,7 @@ class CommentDBHelper(DatabaseTemplate):
         cursor.execute(query)
         DB.commit()
 
-    def readHelper(DB, Info):
+    def readHelper(self, DB, Info):
         Index, postID = Info
         cursor = DB.cursor()
         query = "SELECT * FROM comment where postID = " + str(postID) + " LIMIT 1 OFFSET " + str(Index)
@@ -21,20 +21,20 @@ class CommentDBHelper(DatabaseTemplate):
             cID, author, content,date = row
             return Comment(cID, author, content,date)
 
-    def updateHelper(DB,comment):
+    def updateHelper(self, DB,comment):
         pass
         #need to implement this
     
-    def deleteHelper(DB,comment):
+    def deleteHelper(self, DB,comment):
         cursor = DB.cursor()
         commentID = comment.commentID
         query = "DELETE FROM comment WHERE commentID = " + str(commentID)
         cursor.execute(query)
         DB.commit()
 
-    def countHelper(DB, comment):
+    def countHelper(self, DB, comment):
         cursor = DB.cursor()
         query = "SELECT COUNT(commentID) FROM comment"
         cursor.execute(query)
         for row in cursor:
-            return row
+            return row[0]

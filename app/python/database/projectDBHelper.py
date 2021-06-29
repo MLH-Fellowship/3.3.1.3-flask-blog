@@ -1,8 +1,9 @@
 from .databaseTemplate import DatabaseTemplate
+from app.python.components.project import Project
 
 class ProjectDBHelper(DatabaseTemplate):
 
-    def createHelper(DB, project):
+    def createHelper(self, DB, project):
         cursor =  DB.cursor()
         name = project.projectName
         description = project.projectDescription
@@ -13,7 +14,7 @@ class ProjectDBHelper(DatabaseTemplate):
         cursor.execute(query)
         DB.commit()
 
-    def readHelper(DB, Index):
+    def readHelper(self, DB, Index):
         cursor = DB.cursor()
         query = "SELECT * FROM post LIMIT 1 OFFSET " + str(Index )
         cursor.execute(query) 
@@ -21,20 +22,20 @@ class ProjectDBHelper(DatabaseTemplate):
             ipID, file, title, description = row
             return ImagePost(ipID, file, title,description)
 
-    def updateHelper(DB,project):
+    def updateHelper(self, DB,project):
         pass
         #need to implement this
     
-    def deleteHelper(DB,project):
+    def deleteHelper(self, DB,project):
         cursor = DB.cursor()
         projectID = project.projectID
         query = "DELETE FROM projectPost WHERE projectID = " + str(projectID)
         cursor.execute(query)
         DB.commit()
 
-    def countHelper(DB, comment):
+    def countHelper(self, DB, comment):
         cursor = DB.cursor()
         query = "SELECT COUNT(projectID) FROM project"
         cursor.execute(query)
         for row in cursor:
-            return row
+            return row[0]

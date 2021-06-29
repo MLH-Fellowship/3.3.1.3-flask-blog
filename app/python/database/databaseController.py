@@ -10,7 +10,7 @@ class DatabaseController:
         self.imagePostDB = ImagePostDBHelper()
         self.projectDB = ProjectDBHelper()
 
-    def decideOperation(elementType, functionType, element, index = -1):
+    def decideOperation(self, elementType, functionType, element, sqliteDatabase, index = -1):
         
         dbToCall = None
 
@@ -27,19 +27,20 @@ class DatabaseController:
             dbToCall = self.projectDB
         
         else:
+            print("Failed lol", elementType)
             return
         
         if functionType == "create":
-            dbToCall.create(element)
+            dbToCall.create(sqliteDatabase, element)
             
         elif functionType == "read":
-            dbToCall.read(element,index)
+            return dbToCall.read(sqliteDatabase, element,index)
 
         elif functionType == "update":
-            dbToCall.update(element)
+            dbToCall.update(sqliteDatabase, element)
         
         elif functionType == "delete":
-            dbToCall.delete(element)
+            dbToCall.delete(sqliteDatabase, element)
 
         elif functionType == "count":
-            dbToCall.count(element)
+            return dbToCall.count(sqliteDatabase,element)
