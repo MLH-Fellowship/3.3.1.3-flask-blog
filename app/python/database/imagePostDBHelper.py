@@ -2,7 +2,7 @@ from .databaseTemplate import DatabaseTemplate
 
 class ImagePostDBHelper(DatabaseTemplate):
 
-    def createHelper(DB, imagePost):
+    def createHelper(self,DB, imagePost):
         cursor =  DB.cursor()
         file = imagePost.imageFile
         title = imagePost.imageTitle
@@ -13,7 +13,7 @@ class ImagePostDBHelper(DatabaseTemplate):
         cursor.execute(query)
         DB.commit()
 
-    def readHelper(DB, Index):
+    def readHelper(self,DB, Index):
         cursor = DB.cursor()
         query = "SELECT * FROM post LIMIT 1 OFFSET " + str(Index)
         cursor.execute(query) 
@@ -21,20 +21,20 @@ class ImagePostDBHelper(DatabaseTemplate):
             ipID, file, title, description = row
             return ImagePost(ipID, file, title,description)
 
-    def updateHelper(DB,imagePost):
+    def updateHelper(self,DB,imagePost):
         pass
         #need to implement this
     
-    def deleteHelper(DB,imagePost):
+    def deleteHelper(self,DB,imagePost):
         cursor = DB.cursor()
         imagePostID = imagePost.imageID
         query = "DELETE FROM imagepost WHERE imageID = " + str(imagePostID)
         cursor.execute(query)
         DB.commit()
 
-    def countHelper(DB, comment):
+    def countHelper(self, DB, comment):
         cursor = DB.cursor()
         query = "SELECT COUNT(imageID) FROM imagePost"
         cursor.execute(query)
         for row in cursor:
-            return row
+            return row[0]
