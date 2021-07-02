@@ -1,6 +1,11 @@
 #blogEntryContainer{
-    background-image: url("../img/blogBackground.jpg");
+    background: url("../img/blogBackground.jpg");
+    height: 100vh;
+    width: 100vw;
 }
+
+
+
 
 /* Small devices (landscape phones, 544px and up) */
 @media (min-width: 544px) {  
@@ -32,41 +37,44 @@ Custom media queries
     * {font-size:2.75rem} 
 }
 
-
-
-@font-face {
-  font-family: "Atlantis";
-  src: url("fonts/atlantistext-bold-webfont.woff2") format('woff2'),
-       url("fonts/atlantistext-bold-webfont.woff") format('woff');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
- font-family: "Atlantis";
-  src: url("fonts/atlantistext-regular-webfont.woff2") format('woff2'),
-       url("fonts/atlantistext-regular-webfont.woff") format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-* {
-    font-family: "Atlantis", normal;
-}
-
 .content{
     position: relative;
     text-align: center;
 }
-
-.alignCenter{
+ 
+.titleContainer{
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 58%;
+    left: 52%;
     transform: translate(-50%, -50%);
+    font-size: 3.5vw;
+    width: 80%;
+    height: 35%;
+    overflow: auto;
 }
 
-.returnButton{
-    margin-top: -6%;
-    font-size: 1.2em;
+.createContainer{
+    position: absolute;
+    top: 58%;
+    left: 52%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 35%;
+    overflow: auto;
+    font-size: 5vw;
+}
+
+.dateContainer{
+    position: absolute;
+    top: 30%;
+    left: -25%;
+    font-size:  1.5vw;
+    width: 85%;
+    height: 40%;
+    overflow: auto;
+}
+.imageHolder{
+    width: 100%;
+    height: 100%;
+
 }

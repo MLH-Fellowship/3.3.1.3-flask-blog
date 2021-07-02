@@ -1,184 +1,97 @@
 import os
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask import Flask, render_template, send_from_directory, request
 from dotenv import load_dotenv
-from app.python.components.applicationController import ApplicationController
-from app.python.components.post import Post
+from datetime import date
+from app.python.components.factory import Factory
+
 from PIL import Image as IMG
 
 load_dotenv()
 app = Flask(__name__)
 
-controller = ApplicationController()
 
 UPLOAD_FOLDER = '../app/static/img'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portfolio.posts'
+app.config ['SQLALCHEMY_BIND'] = {"projects": 'sqlite:///portfolio.projects'}
+db = SQLAlchemy(app)
+
+
+class Post(db.Model):
+    id = db.Column('postID', db.Integer, primary_key = True, autoincrement = True)
+    title = db.Column(db.String())
+    content = db.Column(db.String())  
+    date = db.Column(db.Date())
+
+    def __init__(self, title, content,date):
+        self.title = title;
+        self.content = content;
+        self.date = date
+
+class Projects(db.Model):
+    __bind_key__ = "projects"
+    id = db.Column('projectID', db.Integer, primary_key = True, autoincrement = True)
+    title = db.Column(db.String())
+    content = db.Column(db.String())
+    prevImageName = db.Column(db.String())
+    gifImageName = db.Column(db.String())
+    githubRepoUrl = db.Column(db.String())
+    youtubeVideoUrl = db.Column(db.String())
+
+    
+    def __init__(self, title, content, prevImageName, gifImageName, githubRepoUrl, youtubeVideoUrl):
+        self.title = title;
+        self.content = content;
+        self.prevImageName = prevImageName
+        self.gifImageName = gifImageName
+        self.githubRepoUrl = githubRepoUrl
+        self.youtubeVideoUrl = youtubeVideoUrl
+
+db.create_all()
 
 @app.route('/')
 def index():
-    return render_template('index.html', title="Gamer Fellowship", url=os.getenv("URL"))
+    return render_template('index.html', title="Jobegiar99", url=os.getenv("URL"))
 
 @app.route('/blog')
 def blog():
 
-    post = controller.PostController.component
-    comment = controller.CommentController.component
-    #Template
-    postCategory = post.postCategory
-    postTitle = post.postTitle
-    postDate = post.postDate
-    postBody = post.postContent
-    commentAuthor = comment.commentAuthor
-    commentDate = comment.commentDate
-    commentBody = comment.commentContent
-    LikeCount = post.postLikeCount
+    return Factory().createBlogPreview(Post.query.all())
 
+@app.route('/postView', methods = ["GET", "POST"])
+def postView():
+    postTitle = request.args.get("postTitle")
+    postContent = request.args.get("postContent")
+    postDate = request.args.get("postDate")
+    return render_template("blogEntry.html", postTitle = postTitle, postContent = postContent, postDate = postDate)
 
-    title = post.postTitle
-    return render_template('blogEntry.html', postCategory = postCategory, 
-    postTitle = title, postDate = postDate, postBody = postBody, commentAuthor = commentAuthor,\
-    commentDate = commentDate, commentBody = commentBody )
-
-
-@app.route("/character")
+@app.route("/aboutMe")
 def character():
     return render_template('character.html', url=os.getenv("URL"))
 
-@app.route("/nextPost")
-def loadNextPost():
-    postIndex = postGenerator.postIndex
-    postIndex = postIndex + 1 if postIndex  + 1 < len(postGenerator.posts) else 0
-    postGenerator.postIndex = postIndex
-    postGenerator.obtainPostCommentInfo()
-    return blog()
-
-@app.route("/prevPost")
-def loadPrevPost():
-    postIndex = postGenerator.postIndex
-    postIndex = postIndex - 1 if postIndex  -1 > -1 else len(postGenerator.posts) - 1
-    postGenerator.postIndex = postIndex
-    postGenerator.obtainPostCommentInfo()
-    return blog()
-
-@app.route("/nextComment")
-def loadNextComment():
-    commentIndex = postGenerator.commentIndex
-    commentIndex = commentIndex + 1 if commentIndex  + 1 < len(postGenerator.postComments) else 0
-    postGenerator.commentIndex = commentIndex
-    return blog()
-
-@app.route("/prevComment")
-def loadPrevComment():
-    commentIndex = postGenerator.commentIndex
-    commentIndex = commentIndex - 1 if (commentIndex  -1) > -1 else len(postGenerator.postComments) - 1
-    postGenerator.commentIndex = commentIndex
-    return blog()
-
-@app.route("/giveLove")
-def giveLove():
-    postIndex = postGenerator.postIndex
-    post = postGenerator.posts[postIndex]
-    postGenerator.DB.addALike(post)
-    postGenerator.posts[postIndex].postLikeCount += 1
-    return blog()
-
-
-@app.route("/commentForm", methods=["GET", "POST"])
-def addCommentForm():
-    return render_template("addComment.html")
 
 @app.route("/postForm", methods=["GET", "POST"])
 def addPostForm():
     return render_template("addPost.html")
 
-@app.route("/createComment", methods=["GET", "POST"])
-def createComment():
-    author = request.form["commentAuthor"]
-    date = request.form["commentDate"]
-    body = request.form["commentBody"]
-    arrayIndex = len(postGenerator.postComments)
-    commentToAdd = Comment(arrayIndex, author, body, date, -1)
-    postGenerator.addComment(commentToAdd)
-    return blog()
-
 @app.route("/createPost", methods = ["GET", "POST"])
 def createPost():
+
     title = request.form["postTitle"]
-    category = request.form["postCategory"]
-    date = request.form["postDate"]
-    body = request.form["postBody"]
-    #postID = -1, postTitle = "", postContent = "", postCategory = "", postDate = "", postLikeCount = 0, postCommentCount = 0)
-    nextPost = Post()
-    nextPost.postTitle = title
-    nextPost.postCategory = category
-    nextPost.postContent = body
-    nextPost.postDate = date
-    controller.DBController.decideOperation("post","create",nextPost,controller.DB)
-    
+    dateInfo = request.form['postDate'].split('-')
+    Date = date(int(dateInfo[0]), int(dateInfo[1]), int(dateInfo[2]))
+    content = request.form["postBody"]
+
+    post = Post(title,content,Date)
+
+    db.session.add(post)
+
+    db.session.commit()
+
     return blog()
-"""
-@app.route("/gallery")
-def gallery():
-
-    imageIndex = galleryGenerator.imageIndex
-    galleryImage = galleryGenerator.images[imageIndex] if imageIndex > -1 and imageIndex < len(galleryGenerator.images) else Image()
-    print(imageIndex)
-    #Template
-    imageFile = galleryGenerator.formatter.decode_img(galleryImage.imageFile)
-    if imageFile != None:
-        
-        imageTitle = galleryImage.imageTitle
-        imageDescription = galleryImage.imageDescription
-        imageFile.save(r'app\\static\\img\\galleryImageTemplate.jpg')
-  
-    else:
-        print("NOPE")
-
-
-    return render_template('gallery.html', imageTitle = imageTitle, imageDescription = imageDescription,
-            currentImage = imageIndex + 1, totalImages = len(galleryGenerator.images))
-
-
-
-@app.route("/nextImage")
-def loadNextImage():
-    imageIndex = galleryGenerator.imageIndex
-    imageIndex = imageIndex + 1 if (imageIndex  + 1) < len(galleryGenerator.images) else 0
-    galleryGenerator.imageIndex = imageIndex
-    return gallery()
-
-@app.route("/prevImage")
-def loadPrevImage():
-    imageIndex = galleryGenerator.imageIndex
-    imageIndex = imageIndex - 1 if (imageIndex  - 1) > -1  else len(galleryGenerator.images) - 1
-    galleryGenerator.imageIndex = imageIndex
-    return gallery()
-
-
-@app.route("/imageForm", methods=["GET", "POST"])
-def addImageForm():
-    return render_template('addImage.html')
-
-
-@app.route("/createImage", methods=["GET", "POST"])
-def createImage():
-    title = request.form["imageTitle"]
-    description = request.form["imageDescription"]
-    file = request.files['file']
-    
-    encoded_file = galleryGenerator.formatter.encode_img(IMG.open(file))
-    imageToAdd = Image(-1,encoded_file,title,description)
-    galleryGenerator.addImage(imageToAdd)
-    return gallery()
-"""
 
 @app.route("/health")
 def health():
     return "Hp: 100"
-
-@app.route("/register", methods=('GET','POST'))
-def register():
-    return "Register",501
-
-@app.route("/login" , methods=('GET','POST'))
-def login():
-    return "Login",501

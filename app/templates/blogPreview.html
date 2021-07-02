@@ -1,0 +1,51 @@
+<head>
+
+    <meta charset="utf-8">
+    <title>Jobegiar99's Blog</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link rel="stylesheet" href="../static/styles/blogPreview.css">
+    <link 
+        rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+        crossorigin="anonymous"
+    >
+
+</head>
+
+<body class = "container fluid" id = "blogEntryContainer">
+    <div class = "row">
+        <div 
+            class = "col-12 content"
+            align = "center"
+            onclick= "window.location.href='{{ url_for( 'addPostForm') }}';""
+        >
+            <img class = "img-fluid" src = "../static/img/blogContentBackground.png"/>
+            <div class = "createContainer" style = "font-size: 70%; top: 49%; left: 51%">
+                Create Post
+        </div>
+
+        </div>
+    </div>
+    <div class = "row" style = "overflow: auto; max-height: 80vh;">
+
+        <div class = "col-12 titlePrev">
+            <div 
+                class = "content" 
+                align = "center" 
+                style = "font-size: 1vw;"
+                onclick = "window.location.href='{{ url_for( 'openBigView', postID = 1, postTitle = 'I created a Kinematic Script with C++') }}';" method = 'post'
+            >
+                <img class = "img-fluid imageHolder" src = "../static/img/blogContentBackground.png"/>
+                <div class = "dateContainer">02/21/2012</div>
+                <div class = "titleContainer">
+                    I created a Kinematic Script with C++
+                </div>
+            </div>
+        </div>
+
+                      
+    </div>
+</body>

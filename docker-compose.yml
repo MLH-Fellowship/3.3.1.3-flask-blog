@@ -6,6 +6,6 @@ services:
       - "80:80"
     restart: always
     env_file:
-      - python3-virtualenv/pyvenv.cfg
+      - info.env
     volumes:
       - ./flask.sqlite:/myportfolio/flask.sqlite
