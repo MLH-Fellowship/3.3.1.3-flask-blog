@@ -1,0 +1,83 @@
+<head>
+
+    <meta charset="utf-8">
+    <title>Jobegiar99's Blog</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+    <link rel="stylesheet" href="../static/styles/projectBigView.css">
+    <link 
+        rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+        crossorigin="anonymous"
+    >
+
+</head>
+
+<body class = "container fluid" id = "blogEntryContainer" style = "overflow: auto;">
+    
+    <div class = "row">
+        <div class = "col-12"  align = "center" >
+            
+            <img class = "img-fluid content" id = "projectName" src = "../static/img/blogContentBackground.png"/>
+            <div class = "contentText h4">
+                {{projectName}}
+            </div>
+            
+        </div>
+    </div>
+    <br>
+    <div class = "row">      
+        <div class = "col-12" align = "center" >
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class = "embed-responsive-item"  src={{projectVideoUrl}} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>Lo-fi radio</iframe>
+            </div>    
+        </div>
+    </div>
+
+    <div class = "row">
+        <div class = "col-12" align = "center">
+            <img class = "img-fluid content" style="width: 100%; height: 50vh;" src = "../static/img/blogContentBackground.png"/>
+            <div class = "contentText" id = "projectDescription" align = "center" style="width: 80%; height: 25vh; overflow: auto;">
+                <h5>{{projectDescription}}</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class = "row" >
+
+        <!-- GITHUB REPO-->
+        <div class = "col-6" align = "center">
+            <div class="card" style="width: 18rem; border-radius: 0px; color: white;  box-shadow: 10px 10px 20px black; text-shadow: 2px 2px 2px black;">
+                <img class="card-img-top" src="../static/img/githubGif.gif" alt="Card image cap">
+                <div class="card-body">
+                    <div align = "center">
+                        <h5 class="card-title">Github Repo</h5>
+                        <p class="card-text">Feel free to read any part of the code of this or any other repo!</p>
+                        <a href={{githubURL}}  target="blank" class="btn btn-dark card-title card-text" style = " border-radius: 0px;">Click me!</a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <!-- URL TO TEST IT ON THE BROWSER -->
+        <div class = "col-6" align = "center">
+            <div class="card" style="width: 18rem; border-radius: 0px; color: white;  box-shadow: 10px 10px 20px black; text-shadow: 2px 2px 2px black;">
+                <img class="card-img-top" src="../static/img/tryItGIF.gif" alt="Card image cap">
+                <div class="card-body">
+                    <div align = "center">
+                        <h5 class="card-title">Try it yourself!</h5>
+                        <p class="card-text">If not available the button will take to the github repo!</p>
+                        <a href={{demoURL}}  target="blank"  class="btn btn-dark" style = " border-radius: 0px;">Click me!</a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+    </div>
+    <br>
+    
+</div>
+    
+</body>
+

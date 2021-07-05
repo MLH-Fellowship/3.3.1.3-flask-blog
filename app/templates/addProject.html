@@ -1,0 +1,86 @@
+<head>
+
+    <meta charset="utf-8">
+    <title>Jobegiar99's Projects</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+    <link rel="stylesheet" href="../static/styles/forms.css">
+    <link 
+        rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+        crossorigin="anonymous"
+    >
+
+</head>
+
+<body class = "container fluid" id = "formsContainer">
+    <form action ="/createProject" method = "post" enctype="multipart/form-data">
+        <div align = "center" class = "form-group">
+            <div class = "row">
+                <div class = "col">
+                    <label class = "formLabel" for = "projectName">Project Name</label>
+                    <input name = "projectName" type="text" class="form-control" id="imageTitle" placeholder="Type the name of the project">
+                </div>
+            </div>
+            <div class = "row">
+                <div class = "col">
+                    <label class = "formLabel" for = "projectShortDescription">Short Description</label>
+                    <input name = "projectShortDescription" type="text" placeholder="Will be used for the preview :)" maxlength="35" class="form-control" id="commentDate" >
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class = "col">
+                    <label class = "formLabel" for = "projectGIF">Gif</label>
+                    <input required name = "projectGIF" type="file" placeholder="Will be used for the preview :)" accept="image/gif" class="form-control">
+                </div>
+            </div>
+
+
+            <div class = "row">
+                <div class = "col">
+                    <label class = "formLabel" for = "projectVideoURL">Video URL</label>
+                    <input name = "projectVideoURL" type="url" placeholder="/embed/ format for youtube videos please!"  class="form-control" id="commentDate" >
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class = "col">
+                    <label class = "formLabel" for = "projectDescription">Description</label>
+                    <input name = "projectDescription" placeholder="Let them know everything about this project!" type="text"  class="form-control" id="commentDate" >
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class = "col">
+                    <label class = "formLabel" for = "projectGithubURL">Github URL</label>
+                    <input required name = "projectGithubURL" placeholder = "Show them your work :)" type="url" accept="image/gif" class="form-control">
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class = "col">
+                    <label class = "formLabel" for = "projectDemoURL">Demo URL</label>
+                    <input required name = "projectDemoURL" placeholder="If not available, use the github repo URL" type="url" accept="image/gif" class="form-control">
+                </div>
+            </div>
+
+
+            <div class = "row">
+                <div class = "col">
+                    <label class = "formLabel" for = "adminPassword">Admin Password</label>
+                    <input required name = "adminPassword" placeholder="Only the admin can add projects :(" type="password" accept="image/gif" class="form-control">
+                </div>
+            </div>
+            
+            <br>
+            <div class = "row">
+                <div class = "col">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+            
+        </div>
+    </form>
+</body>

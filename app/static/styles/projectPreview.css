@@ -1,0 +1,42 @@
+#blogEntryContainer{
+    background-image: url("../img/blogBackground.jpg");
+}
+
+.card{
+    background-image: url("../img/cardBackground.png");
+}
+@font-face {
+    font-family: "Atlantis";
+    src: url("fonts/atlantistext-bold-webfont.woff2") format('woff2'),
+         url("fonts/atlantistext-bold-webfont.woff") format('woff');
+      font-weight: bold;
+      font-style: normal;
+  }
+  
+  @font-face {
+   font-family: "Atlantis";
+    src: url("fonts/atlantistext-regular-webfont.woff2") format('woff2'),
+         url("fonts/atlantistext-regular-webfont.woff") format('woff');
+      font-weight: normal;
+      font-style: normal;
+  }
+  
+  * {
+      font-family: "Atlantis", normal;
+  }
+
+.content{
+    position: relative;
+    text-align: center;
+}
+
+.createContainer{
+    position: absolute;
+    top: 42%;
+    left: 52%;
+    transform: translate(-50%, -42%);
+    width: 70%;
+    height: 50%;
+    overflow: auto;
+    font-size: 5vw;
+}

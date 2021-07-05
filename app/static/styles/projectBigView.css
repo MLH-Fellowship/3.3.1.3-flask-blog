@@ -1,0 +1,55 @@
+#blogEntryContainer{
+    background-image: url("../img/blogBackground.jpg");
+}
+
+.card{
+    background-image: url("../img/cardBackground.png");
+}
+
+@font-face {
+    font-family: "Atlantis";
+    src: url("fonts/atlantistext-bold-webfont.woff2") format('woff2'),
+         url("fonts/atlantistext-bold-webfont.woff") format('woff');
+      font-weight: bold;
+      font-style: normal;
+  }
+  
+  @font-face {
+   font-family: "Atlantis";
+    src: url("fonts/atlantistext-regular-webfont.woff2") format('woff2'),
+         url("fonts/atlantistext-regular-webfont.woff") format('woff');
+      font-weight: normal;
+      font-style: normal;
+  }
+  
+  * {
+      font-family: "Atlantis", normal;
+  }
+
+.content{
+    position: relative;
+    text-align: center;
+}
+
+.contentText{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 40%;
+    overflow: auto;
+    font-size: 5vw;
+}
+
+
+
+#projectName{
+    width: 100%;
+    height: 120%;
+}
+
+#projectDescription{
+    top: 50%;
+    height: 40%;
+}
