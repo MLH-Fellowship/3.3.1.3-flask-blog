@@ -123,7 +123,8 @@ def createProject():
         demoURL = request.form["projectDemoURL"]
         adminPassword = AdminCheck().checkIfAdmin(request.form["adminPassword"])
         if adminPassword:
-            gifName = gif.filename
+            gifName = gif.filename.replace(" ","_")
+            gif.filename = gifName
             gif.save(os.path.join(UPLOAD_FOLDER,secure_filename(gif.filename)))
 
             project = Project(name, shortDescription, gifName, videoURL, description, githubURL,demoURL)
