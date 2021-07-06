@@ -7,6 +7,7 @@ from app.python.components.factory import Factory
 from app.python.components.adminCheck import AdminCheck
 from PIL import Image as IMG
 from werkzeug.utils import secure_filename
+from flask_migrate import Migrate
 
 load_dotenv()
 app = Flask(__name__)
@@ -14,12 +15,18 @@ app = Flask(__name__)
 
 UPLOAD_FOLDER = 'app\\static\\img'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portfolio.posts'
-app.config ['SQLALCHEMY_BINDS'] = {"projects": 'sqlite:///portfolio.projects'}
-db = SQLAlchemy(app)
+app.config ['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@127.0.0.1:5432/portfolio'
 
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+
+
+db = SQLAlchemy(app)
+migrate = Migrate(app,db)
 
 class Post(db.Model):
+    __tablename__ = 'post'
     id = db.Column('postID', db.Integer, primary_key = True, autoincrement = True)
     title = db.Column(db.String())
     content = db.Column(db.String())  
@@ -31,7 +38,7 @@ class Post(db.Model):
         self.date = date
 
 class Project(db.Model):
-    __bind_key__ = 'projects'
+    __tablename__ = 'projects'
     id = db.Column('projectID', db.Integer, primary_key = True, autoincrement = True)
     name = db.Column(db.String())
     shortDescription = db.Column(db.String(35))
@@ -51,7 +58,7 @@ class Project(db.Model):
         self.githubURL = githubURL
         self.demoURL = demoURL
 
-db.create_all()
+
 
 @app.route('/')
 def index():
