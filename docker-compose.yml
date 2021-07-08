@@ -9,3 +9,8 @@ services:
       - info.env
     volumes:
       - ./flask.sqlite:/myportfolio/flask.sqlite
+
+  db:
+    image: postgres
+    restart: always
+    

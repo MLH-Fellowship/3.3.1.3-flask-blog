@@ -129,7 +129,7 @@ class Factory:
             body += """
             <div class = "col-xs-6 col-m-4 col-xl-4 titlePrev" align = "center">
                 <br>
-                <div class="card" style="width: 18rem; border-radius: 0px; color: white;  box-shadow: 10px 10px 20px black; text-shadow: 2px 2px 2px black;">
+                <div class="card" style="width: 100%; border-radius: 0px; color: white;  box-shadow: 10px 10px 20px black; text-shadow: 2px 2px 2px black;">
                     <img class="card-img-top" src="../static/img/""" + gif + """" alt="Card image cap">
                     <div class="card-body">
                         <div align = "center">
