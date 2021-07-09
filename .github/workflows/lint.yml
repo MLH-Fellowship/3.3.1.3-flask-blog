@@ -11,6 +11,7 @@ jobs:
   run-linters:
      name: Run linters
      runs-on: ubuntu-latest
+     autofix: true
 
      steps:
        - name: Check out Git repository
@@ -26,7 +27,7 @@ jobs:
          uses: wearerequired/lint-action@v1
          with:
             black: true
-            flake8: true  
+            flake8: true
   docker:
     runs-on: ubuntu-latest
     steps:
