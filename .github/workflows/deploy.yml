@@ -29,4 +29,4 @@ jobs:
           SSH_IP: ${{ secrets.SSH_IP }}
         
       - name: Print project root directory
-        run: ssh my-vm 'cd ${{ secrets.project_ROOT }}' && pwd'
+        run: ssh my-vm 'cd ${{ secrets.project_ROOT }} && pwd'
