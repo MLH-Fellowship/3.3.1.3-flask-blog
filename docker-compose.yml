@@ -8,6 +8,10 @@ services:
     volumes:
       - ./flask.sqlite:/myportfolio/flask.sqlite
 
+  db:
+    image: postgres
+    restart: always
+    
   nginx:
     image: jonasal/nginx-certbot:latest
     restart: unless-stopped
