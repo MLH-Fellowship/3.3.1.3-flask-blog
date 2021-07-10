@@ -15,8 +15,8 @@ app = Flask(__name__)
 
 UPLOAD_FOLDER = 'app\\static\\img'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config ['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@127.0.0.1:5432/portfolio'
-
+app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portfolio_post.sqlite3'
+app.config ['SQLALCHEMY_BINDS'] = {"projects": 'sqlite:///portfolio_project.sqlite3'}
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -38,7 +38,7 @@ class Post(db.Model):
         self.date = date
 
 class Project(db.Model):
-    __tablename__ = 'projects'
+    __bind_key__ = 'projects'
     id = db.Column('projectID', db.Integer, primary_key = True, autoincrement = True)
     name = db.Column(db.String())
     shortDescription = db.Column(db.String(35))
@@ -58,6 +58,8 @@ class Project(db.Model):
         self.githubURL = githubURL
         self.demoURL = demoURL
 
+db.create_all()
+db.session.commit()
 
 
 @app.route('/')
@@ -91,7 +93,7 @@ def addPostForm():
 
 @app.route("/createPost", methods = ["GET", "POST"])
 def createPost():
-
+    
     title = request.form["postTitle"]
     dateInfo = request.form['postDate'].split('-')
     Date = date(int(dateInfo[0]), int(dateInfo[1]), int(dateInfo[2]))
