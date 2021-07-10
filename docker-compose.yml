@@ -13,4 +13,6 @@ services:
   db:
     image: postgres
     restart: always
-    
+    environment:
+      POSTGRES_DB: "portfolio"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
