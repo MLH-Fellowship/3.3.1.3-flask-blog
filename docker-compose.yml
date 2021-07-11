@@ -9,7 +9,7 @@ services:
       - ./flask.sqlite:/myportfolio/flask.sqlite
 
   db:
-    image: postgres
+    image: sqlite3
     restart: always
     
   nginx:
