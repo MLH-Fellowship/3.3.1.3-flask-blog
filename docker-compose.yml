@@ -7,10 +7,6 @@ services:
       - info.env
     volumes:
       - ./flask.sqlite:/myportfolio/flask.sqlite
-
-  db:
-    image: sqlite3
-    restart: always
     
   nginx:
     image: jonasal/nginx-certbot:latest
