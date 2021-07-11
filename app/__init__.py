@@ -7,7 +7,6 @@ from app.python.components.factory import Factory
 from app.python.components.adminCheck import AdminCheck
 from PIL import Image as IMG
 from werkzeug.utils import secure_filename
-from flask_migrate import Migrate
 
 load_dotenv()
 app = Flask(__name__)
@@ -23,7 +22,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
 db = SQLAlchemy(app)
-migrate = Migrate(app,db)
 
 class Post(db.Model):
     __tablename__ = 'post'
