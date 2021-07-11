@@ -11,7 +11,6 @@ jobs:
   run-linters:
      name: Run linters
      runs-on: ubuntu-latest
-     autofix: true
 
      steps:
        - name: Check out Git repository
@@ -28,6 +27,7 @@ jobs:
          with:
             black: true
             flake8: true
+            autofix: true
   docker:
     runs-on: ubuntu-latest
     steps:
