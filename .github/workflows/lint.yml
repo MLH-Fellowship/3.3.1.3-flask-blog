@@ -27,7 +27,7 @@ jobs:
          with:
             black: true
             flake8: true
-            autofix: true
+            auto_fix: true
   docker:
     runs-on: ubuntu-latest
     steps:
