@@ -82,11 +82,11 @@ class PostDatabaseHelper:
             commentCount = 0
             self.cursor.execute("SELECT likeCount from Likes WHERE postID = " + str(postID) )
             likeQuery = [x for x in self.cursor]
-            likeCount = 0 if len(likeQuery) == 0 else likeQuery[0][0]
+            likeCount = 0 if not len(likeQuery) else likeQuery[0][0]
 
             self.cursor.execute("select COUNT(postID) from comments WHERE postID  = " + str(postID))
             commentQuery = [x for x in self.cursor]
-            commentCount = 0 if len(commentQuery) == 0 else commentQuery[0][0]
+            commentCount = 0 if  not len(commentQuery) else commentQuery[0][0]
 
             posts.append(Post(index,postID, postTitle, postBody, postCategory, postDate,likeCount,commentCount))
             

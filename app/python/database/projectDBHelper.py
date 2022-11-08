@@ -9,7 +9,7 @@ def ProjectDBHelper(DatabaseTemplate):
         url = project.projectURL
         file = project.projectImageFile
         query = "INSERT INTO ImagePost(projectName, projectDescription, projectURl, projectFile) VALUES "
-        query += '("' + name + '","' + description +  '","' + url + ',' + file + ');'
+        query += f'(" {name} "," {description} "," {url} , {file} );'
         cursor.execute(query)
         DB.commit()
 
